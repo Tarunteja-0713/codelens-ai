@@ -20,10 +20,10 @@
               700: '#047857',
             },
             dark: {
-              bg: '#0f172a',
-              surface: '#1e293b',
-              border: '#334155',
+              bg: '#0b1120',
+              surface: '#151f32',
               card: '#1e293b',
+              border: '#334155',
               hover: '#273548'
             }
           },
@@ -38,12 +38,14 @@
   <style>
     /* Custom scrollbars & code formatting */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-track { background: #0b1120; }
     ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    .badge-critical { background-color: rgba(225, 29, 72, 0.25); color: #fda4af; border: 1px solid rgba(225, 29, 72, 0.5); }
     .badge-high { background-color: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
     .badge-medium { background-color: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
     .badge-low { background-color: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
+    .badge-info { background-color: rgba(148, 163, 184, 0.2); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.4); }
     .code-block { tab-size: 2; white-space: pre-wrap; word-break: break-all; }
     @media print {
       body * { visibility: hidden; }
@@ -66,7 +68,7 @@
           </div>
           <div>
             <span class="font-bold tracking-tight text-white block text-base leading-tight">CodeLens AI</span>
-            <span class="text-[10px] text-emerald-400 font-mono tracking-wider uppercase">Static Analyzer</span>
+            <span class="text-[10px] text-emerald-400 font-mono tracking-wider uppercase">Senior Reviewer</span>
           </div>
         </div>
       </div>
@@ -78,22 +80,27 @@
           <span>Dashboard</span>
         </button>
 
-        <button onclick="router.navigate('upload')" data-nav="upload" class="nav-item w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition text-slate-400 hover:text-slate-100 hover:bg-slate-800/60">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-          <span>Upload & Analyze</span>
+        <button onclick="router.navigate('workspace')" data-nav="workspace" class="nav-item w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition text-slate-400 hover:text-slate-100 hover:bg-slate-800/60">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          <span>Workspace & Ingestion</span>
         </button>
 
         <button onclick="router.navigate('issues')" data-nav="issues" class="nav-item w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition text-slate-400 hover:text-slate-100 hover:bg-slate-800/60 justify-between">
           <div class="flex items-center space-x-3">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-            <span>Issues</span>
+            <span>Review Findings</span>
           </div>
           <span id="nav-issue-badge" class="hidden px-2 py-0.5 text-xs font-semibold rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30">0</span>
         </button>
 
+        <button onclick="router.navigate('actionplan')" data-nav="actionplan" class="nav-item w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition text-slate-400 hover:text-slate-100 hover:bg-slate-800/60">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+          <span>Prioritized Action Plan</span>
+        </button>
+
         <button onclick="router.navigate('reports')" data-nav="reports" class="nav-item w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition text-slate-400 hover:text-slate-100 hover:bg-slate-800/60">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-          <span>Reports</span>
+          <span>Audit Reports</span>
         </button>
 
         <button onclick="router.navigate('languages')" data-nav="languages" class="nav-item w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition text-slate-400 hover:text-slate-100 hover:bg-slate-800/60">
@@ -117,10 +124,10 @@
     <div class="p-4 border-t border-slate-800 text-xs text-slate-400">
       <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800/80">
         <p class="font-medium text-slate-300 flex items-center gap-1.5 mb-1">
-          <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Client-side Engine
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Dual-Context Engine
         </p>
         <p class="text-[11px] leading-relaxed text-slate-400">
-          No external server, zero telemetry. Code never executes or leaves your browser.
+          Primary analysis on pasted code or files, with repository context reconciliation and 3-level explanations.
         </p>
       </div>
     </div>
@@ -138,11 +145,11 @@
       <div class="flex items-center space-x-3">
         <button onclick="sampleProject.load()" class="px-3 py-1.5 rounded-md bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600/30 border border-emerald-500/30 text-xs font-medium transition flex items-center space-x-1.5">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-          <span>Load Sample Project</span>
+          <span>Load Demo Project</span>
         </button>
         <button onclick="app.clearAnalysis()" class="px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-xs font-medium transition flex items-center space-x-1.5">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-          <span>Clear</span>
+          <span>Clear All</span>
         </button>
       </div>
     </header>
@@ -155,18 +162,22 @@
 
       <!-- ==================== SCREEN 1: DASHBOARD ==================== -->
       <section id="view-dashboard" class="space-y-6">
-        <!-- Top Hero Section -->
+        <!-- Project Overview Hero Block -->
         <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-800 p-6 rounded-xl shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
+            <div class="flex items-center space-x-2 mb-1.5">
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Expert Reviewer Mode</span>
+              <span class="text-xs text-slate-400 font-mono">Dual-Context Engine</span>
+            </div>
             <h2 class="text-xl font-bold text-white tracking-tight">Code Review & Security Analysis Engine</h2>
-            <p class="text-slate-400 text-sm mt-1 max-w-2xl leading-relaxed">
-              Plug-and-play static code evaluation for Python, JS, SQL, HTML, CSS, C/C++, Java, and C#. Run security checks, style linting, bug pattern analysis, and actionable remediation recommendations without execution.
+            <p id="dashboard-overview-text" class="text-slate-400 text-xs mt-1.5 max-w-3xl leading-relaxed">
+              CodeLens AI acts as a senior code reviewer and principal security architect. Ingest files, uncompress ZIP archives, or paste raw code directly into the workspace terminal for immediate multi-level static analysis.
             </p>
           </div>
-          <div class="flex items-center gap-2">
-            <button onclick="router.navigate('upload')" class="px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold rounded-lg text-sm shadow-md shadow-emerald-500/20 transition flex items-center space-x-2">
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <button onclick="router.navigate('workspace')" class="px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold rounded-lg text-xs shadow-md shadow-emerald-500/20 transition flex items-center space-x-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-              <span>Start New Analysis</span>
+              <span>Open Code Workspace</span>
             </button>
           </div>
         </div>
@@ -176,37 +187,37 @@
           <!-- Card 1 -->
           <div class="bg-[#1e293b] border border-slate-800 p-5 rounded-xl">
             <div class="flex items-center justify-between text-slate-400 text-xs font-medium mb-2">
-              <span>Files Analyzed</span>
+              <span>Targets Evaluated</span>
               <span class="p-2 bg-slate-800/80 rounded-lg text-slate-300">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
               </span>
             </div>
             <div class="text-3xl font-bold text-white tracking-tight" id="kpi-files-count">0</div>
-            <div class="text-xs text-slate-500 mt-1">Multi-language source documents</div>
+            <div class="text-xs text-slate-500 mt-1" id="kpi-files-sub">Pasted snippet + Staged files</div>
           </div>
 
           <!-- Card 2 -->
           <div class="bg-[#1e293b] border border-slate-800 p-5 rounded-xl">
             <div class="flex items-center justify-between text-slate-400 text-xs font-medium mb-2">
-              <span>Total Issues</span>
+              <span>Total Issues Found</span>
               <span class="p-2 bg-slate-800/80 rounded-lg text-amber-400">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
               </span>
             </div>
             <div class="text-3xl font-bold text-amber-400 tracking-tight" id="kpi-issues-count">0</div>
-            <div class="text-xs text-slate-500 mt-1" id="kpi-issues-sub">Awaiting file input</div>
+            <div class="text-xs text-slate-500 mt-1" id="kpi-issues-sub">Awaiting analysis run</div>
           </div>
 
           <!-- Card 3 -->
           <div class="bg-[#1e293b] border border-slate-800 p-5 rounded-xl">
             <div class="flex items-center justify-between text-slate-400 text-xs font-medium mb-2">
-              <span>High Severity Vulnerabilities</span>
+              <span>Critical & High Findings</span>
               <span class="p-2 bg-slate-800/80 rounded-lg text-rose-400">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
               </span>
             </div>
             <div class="text-3xl font-bold text-rose-400 tracking-tight" id="kpi-high-count">0</div>
-            <div class="text-xs text-rose-400/80 mt-1" id="kpi-high-sub">Requires immediate fix</div>
+            <div class="text-xs text-rose-400/80 mt-1" id="kpi-high-sub">Requires priority remediation</div>
           </div>
 
           <!-- Card 4 -->
@@ -237,7 +248,7 @@
             </div>
             <div id="chart-languages" class="space-y-3">
               <div class="text-center py-10 text-slate-500 text-xs">
-                No active analysis data. Click "Load Sample Project" or upload files to view distribution.
+                No active analysis data. Click "Load Demo Project" or paste code in the workspace to view distribution.
               </div>
             </div>
           </div>
@@ -249,8 +260,8 @@
               <div class="space-y-3" id="severity-breakdown-list">
                 <div class="flex items-center justify-between text-xs">
                   <span class="flex items-center space-x-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
-                    <span class="text-slate-300">High (Security & Critical)</span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-600"></span>
+                    <span class="text-slate-300">Critical / High Severity</span>
                   </span>
                   <span class="font-mono text-slate-100" id="count-high">0</span>
                 </div>
@@ -261,7 +272,7 @@
                 <div class="flex items-center justify-between text-xs pt-2">
                   <span class="flex items-center space-x-2">
                     <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
-                    <span class="text-slate-300">Medium (Bugs & Smells)</span>
+                    <span class="text-slate-300">Medium (Bugs & Security Smells)</span>
                   </span>
                   <span class="font-mono text-slate-100" id="count-medium">0</span>
                 </div>
@@ -272,7 +283,7 @@
                 <div class="flex items-center justify-between text-xs pt-2">
                   <span class="flex items-center space-x-2">
                     <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
-                    <span class="text-slate-300">Low (Style & Tasks)</span>
+                    <span class="text-slate-300">Low & Informational</span>
                   </span>
                   <span class="font-mono text-slate-100" id="count-low">0</span>
                 </div>
@@ -283,7 +294,7 @@
             </div>
 
             <div class="mt-6 pt-4 border-t border-slate-800 text-xs text-slate-400 flex items-center justify-between">
-              <span>Overall rating</span>
+              <span>Calculated Rating</span>
               <span id="health-rating-pill" class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-800 text-slate-400">Pending</span>
             </div>
           </div>
@@ -299,81 +310,132 @@
             <button onclick="storage.clearHistory()" class="text-xs text-slate-400 hover:text-rose-400 transition">Clear History</button>
           </div>
           <div id="recent-analyses-container" class="divide-y divide-slate-800">
-            <!-- Dynamic recent runs will load here -->
             <p class="text-xs text-slate-500 py-4 text-center">No recent history recorded.</p>
           </div>
         </div>
       </section>
 
-      <!-- ==================== SCREEN 2: UPLOAD & ANALYZE ==================== -->
-      <section id="view-upload" class="hidden space-y-6">
-        <div class="bg-[#1e293b] border border-slate-800 rounded-xl p-6">
-          <h2 class="text-base font-semibold text-white mb-1">Code Workspace & Ingestion</h2>
-          <p class="text-xs text-slate-400 mb-6">
-            Upload files or drag-and-drop source code. Supported files: 
-            <span class="font-mono text-emerald-400">.py, .js, .java, .cs, .c, .cpp, .cc, .hpp, .sql, .html, .css</span>, or a <span class="font-mono text-emerald-400">.zip</span> archive. 
-            Maximum file size: 1 MB per file.
-          </p>
+      <!-- ==================== SCREEN 2: WORKSPACE & INGESTION ==================== -->
+      <section id="view-workspace" class="hidden space-y-6">
+        <!-- Dual Context Split: Pasted Code (Primary) + Project Files (Context) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-          <!-- Drag and Drop Area -->
-          <div id="drop-zone" class="border-2 border-dashed border-slate-700 hover:border-emerald-500/60 rounded-xl p-8 text-center transition bg-slate-900/50 cursor-pointer flex flex-col items-center justify-center space-y-3">
-            <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-slate-400">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-            </div>
+          <!-- Left Column: Primary Review Target (Pasted Code) -->
+          <div class="bg-[#1e293b] border border-slate-800 rounded-xl p-6 flex flex-col justify-between">
             <div>
-              <p class="text-sm font-medium text-slate-200">Drag and drop source files or ZIP package here</p>
-              <p class="text-xs text-slate-500 mt-1">or click to browse local files on your computer</p>
-            </div>
-            <input type="file" id="file-input" multiple class="hidden" accept=".py,.js,.java,.cs,.c,.cpp,.cc,.hpp,.sql,.html,.css,.txt,.md,.zip">
-            <div class="flex items-center gap-2 pt-2">
-              <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Client-Side Only</span>
-              <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Safe Read-Only</span>
-            </div>
-          </div>
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center space-x-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                  <h3 class="text-sm font-semibold text-white">Primary Target: Pasted Source Snippet</h3>
+                </div>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">Primary Target</span>
+              </div>
+              <p class="text-xs text-slate-400 mb-4">
+                Paste code directly into this editor. When provided, pasted code is treated as the primary target for review, while project files provide architectural and dependency context.
+              </p>
 
-          <!-- Staged Files List -->
-          <div class="mt-6">
-            <div class="flex items-center justify-between mb-3">
-              <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                Staged Source Files (<span id="staged-count">0</span>)
-              </h3>
-              <div class="space-x-2">
-                <button onclick="app.clearStagedFiles()" id="btn-clear-staged" class="text-xs text-slate-400 hover:text-rose-400 hidden">Remove All</button>
+              <!-- Language selector for pasted snippet -->
+              <div class="flex items-center space-x-3 mb-3 text-xs">
+                <span class="text-slate-400">Language Detection:</span>
+                <select id="pasted-lang-select" onchange="workspaceUI.onPastedLangChange()" class="bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg px-2.5 py-1.5 focus:border-emerald-500 focus:outline-none">
+                  <option value="auto">Auto-Detect Language</option>
+                  <option value="Python">Python</option>
+                  <option value="JavaScript">JavaScript</option>
+                  <option value="SQL">SQL</option>
+                  <option value="HTML">HTML</option>
+                  <option value="CSS">CSS</option>
+                  <option value="Java">Java</option>
+                  <option value="C#">C#</option>
+                  <option value="C">C</option>
+                  <option value="C++">C++</option>
+                </select>
+                <span id="pasted-lang-detected-badge" class="font-mono text-emerald-400 text-[11px]"></span>
+              </div>
+
+              <!-- Code Textarea -->
+              <div class="relative">
+                <textarea id="pasted-code-input" oninput="workspaceUI.onPastedCodeInput()" rows="13" placeholder="// Paste source code directly here to review...&#10;// Example:&#10;function authenticate(token) {&#10;  eval(token);&#10;}" class="w-full bg-[#0b1120] border border-slate-700 text-slate-200 font-mono text-xs rounded-lg p-3.5 focus:border-emerald-500 focus:outline-none placeholder-slate-600 leading-relaxed"></textarea>
               </div>
             </div>
 
-            <!-- List display -->
-            <div id="staged-file-list" class="max-h-60 overflow-y-auto space-y-2 pr-1">
-              <div class="p-4 bg-slate-900/40 rounded-lg border border-slate-800/80 text-center text-xs text-slate-500">
-                No files selected yet. Drag & drop or use "Load Sample Project" to populate test cases.
+            <div class="pt-3 flex items-center justify-between text-xs text-slate-400 border-t border-slate-800/80 mt-4">
+              <span id="pasted-stats">0 lines | 0 bytes</span>
+              <button onclick="workspaceUI.clearPastedCode()" class="text-xs text-slate-400 hover:text-rose-400 transition">Clear Snippet</button>
+            </div>
+          </div>
+
+          <!-- Right Column: Project Files & ZIP Ingestion (Contextual Grounding) -->
+          <div class="bg-[#1e293b] border border-slate-800 rounded-xl p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center space-x-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+                  <h3 class="text-sm font-semibold text-white">Project Files & ZIP Ingestion</h3>
+                </div>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-blue-500/10 text-blue-300 border border-blue-500/20">Context & Grounding</span>
+              </div>
+              <p class="text-xs text-slate-400 mb-4">
+                Upload related files or a `.zip` archive. Used for cross-referencing dependencies, function contracts, and project-level consistency checks.
+              </p>
+
+              <!-- Drag and Drop Area -->
+              <div id="drop-zone" class="border-2 border-dashed border-slate-700 hover:border-emerald-500/60 rounded-xl p-5 text-center transition bg-slate-900/50 cursor-pointer flex flex-col items-center justify-center space-y-2">
+                <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-medium text-slate-200">Drag files or .zip here, or click to browse</p>
+                  <p class="text-[11px] text-slate-500">Supports .py, .js, .sql, .html, .css, .java, .cs, .c, .cpp</p>
+                </div>
+                <input type="file" id="file-input" multiple class="hidden" accept=".py,.js,.java,.cs,.c,.cpp,.cc,.hpp,.sql,.html,.css,.txt,.md,.zip">
+              </div>
+
+              <!-- Staged Files List -->
+              <div class="mt-4">
+                <div class="flex items-center justify-between mb-2">
+                  <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                    Staged Files (<span id="staged-count">0</span>)
+                  </h4>
+                  <button onclick="app.clearStagedFiles()" id="btn-clear-staged" class="text-xs text-slate-400 hover:text-rose-400 hidden">Remove All</button>
+                </div>
+                <div id="staged-file-list" class="max-h-40 overflow-y-auto space-y-2 pr-1">
+                  <div class="p-3 bg-slate-900/40 rounded-lg border border-slate-800/80 text-center text-xs text-slate-500">
+                    No files staged. Load demo project or drop in files.
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Analysis Action Buttons -->
-          <div class="mt-6 pt-5 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
-            <div class="text-xs text-slate-400 flex items-center space-x-2">
-              <span id="analysis-status-indicator" class="w-2 h-2 rounded-full bg-slate-600"></span>
-              <span id="analysis-status-text">Ready to run evaluation.</span>
-            </div>
-            <div class="flex items-center space-x-3">
-              <button onclick="sampleProject.load()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg transition border border-slate-700">
-                Load Sample Demo Project
-              </button>
-              <button onclick="app.runAnalysis()" id="btn-run-analysis" class="px-5 py-2 bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-xs font-semibold rounded-lg transition flex items-center space-x-1.5 shadow-md shadow-emerald-500/20 disabled:opacity-50 disabled:cursor-not-allowed">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                <span>Analyze Code Now</span>
-              </button>
+            <div class="pt-3 flex items-center justify-between text-xs text-slate-400 border-t border-slate-800/80 mt-4">
+              <span>Read-only client-side parsing</span>
+              <span>100% Offline</span>
             </div>
           </div>
+        </div>
 
-          <!-- Progress Bar (shown when analyzing) -->
-          <div id="analysis-progress-container" class="mt-4 hidden">
-            <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
-              <div id="analysis-progress-bar" class="bg-emerald-500 h-2 transition-all duration-200" style="width: 0%"></div>
-            </div>
-            <p id="analysis-progress-label" class="text-[11px] text-slate-400 mt-1 font-mono text-right">0%</p>
+        <!-- Master Trigger Bar -->
+        <div class="bg-[#1e293b] border border-slate-800 rounded-xl p-5 flex flex-wrap items-center justify-between gap-4">
+          <div class="text-xs text-slate-400 flex items-center space-x-2.5">
+            <span id="analysis-status-indicator" class="w-2.5 h-2.5 rounded-full bg-slate-600"></span>
+            <span id="analysis-status-text">Ready to run code review.</span>
           </div>
+          <div class="flex items-center space-x-3">
+            <button onclick="sampleProject.load()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg transition border border-slate-700">
+              Load Sample Demo Project
+            </button>
+            <button onclick="app.runAnalysis()" id="btn-run-analysis" class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-xs font-bold rounded-lg transition flex items-center space-x-2 shadow-md shadow-emerald-500/20 disabled:opacity-50 disabled:cursor-not-allowed">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <span>Run Code Review</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div id="analysis-progress-container" class="hidden">
+          <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+            <div id="analysis-progress-bar" class="bg-emerald-500 h-2 transition-all duration-200" style="width: 0%"></div>
+          </div>
+          <p id="analysis-progress-label" class="text-[11px] text-slate-400 mt-1 font-mono text-right">0%</p>
         </div>
       </section>
 
@@ -384,7 +446,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
             <!-- Fulltext search -->
             <div class="lg:col-span-2 relative">
-              <input type="text" id="filter-search" oninput="issuesUI.applyFilters()" placeholder="Search title, code, recommendation..." class="w-full bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg pl-8 pr-3 py-2 focus:border-emerald-500 focus:outline-none placeholder-slate-500">
+              <input type="text" id="filter-search" oninput="issuesUI.applyFilters()" placeholder="Search title, location, snippet, or rationale..." class="w-full bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg pl-8 pr-3 py-2 focus:border-emerald-500 focus:outline-none placeholder-slate-500">
               <svg class="w-4 h-4 text-slate-500 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             </div>
 
@@ -392,9 +454,11 @@
             <div>
               <select id="filter-severity" onchange="issuesUI.applyFilters()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg px-2.5 py-2 focus:border-emerald-500 focus:outline-none">
                 <option value="ALL">All Severities</option>
+                <option value="Critical">Critical Severity</option>
                 <option value="High">High Severity</option>
                 <option value="Medium">Medium Severity</option>
                 <option value="Low">Low Severity</option>
+                <option value="Informational">Informational</option>
               </select>
             </div>
 
@@ -405,14 +469,18 @@
               </select>
             </div>
 
-            <!-- Category / Type Filter -->
+            <!-- Category / Dimension Filter -->
             <div>
-              <select id="filter-type" onchange="issuesUI.applyFilters()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg px-2.5 py-2 focus:border-emerald-500 focus:outline-none">
-                <option value="ALL">All Issue Types</option>
-                <option value="Security">Security Vulnerability</option>
-                <option value="Bug / Error">Bug Risk / Syntax</option>
-                <option value="Code Smell">Code Smell / Best Practice</option>
-                <option value="Task">Task / TODO</option>
+              <select id="filter-dimension" onchange="issuesUI.applyFilters()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg px-2.5 py-2 focus:border-emerald-500 focus:outline-none">
+                <option value="ALL">All Analysis Dimensions</option>
+                <option value="Security risks and unsafe coding practices">Security & Unsafe Practices</option>
+                <option value="Bugs and logic errors">Bugs & Logic Errors</option>
+                <option value="Performance issues">Performance Inefficiencies</option>
+                <option value="Poor or missing error handling">Error Handling & Suppression</option>
+                <option value="Edge cases and unhandled inputs">Edge Cases & Validation</option>
+                <option value="Maintainability, readability, naming, duplication, and code-quality issues">Maintainability & Smells</option>
+                <option value="Architecture, design, and scalability concerns">Architecture & Scalability</option>
+                <option value="Dependency, compatibility, or configuration issues">Compatibility & Standards</option>
               </select>
             </div>
           </div>
@@ -425,8 +493,8 @@
             <div class="flex items-center space-x-2">
               <span>Sort by:</span>
               <select id="sort-order" onchange="issuesUI.applyFilters()" class="bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded px-2 py-1">
-                <option value="severity">Severity (High &gt; Low)</option>
-                <option value="file">File Name (A-Z)</option>
+                <option value="severity">Severity (Critical &gt; Low)</option>
+                <option value="file">Location / File</option>
                 <option value="line">Line Number</option>
               </select>
             </div>
@@ -441,15 +509,15 @@
                 <tr class="bg-slate-900/70 border-b border-slate-800 text-slate-400 font-semibold uppercase tracking-wider">
                   <th class="py-3 px-4 w-28">Severity</th>
                   <th class="py-3 px-4 w-32">Language</th>
-                  <th class="py-3 px-4 w-44">File & Line</th>
+                  <th class="py-3 px-4 w-52">Location</th>
                   <th class="py-3 px-4">Finding & Rationale</th>
-                  <th class="py-3 px-4 w-28 text-right">Actions</th>
+                  <th class="py-3 px-4 w-32 text-right">3-Level Review</th>
                 </tr>
               </thead>
               <tbody id="issues-table-body" class="divide-y divide-slate-800 text-slate-300">
                 <tr>
                   <td colspan="5" class="py-12 text-center text-slate-500">
-                    No issues recorded yet. Upload code files or load the demo project.
+                    No findings recorded yet. Paste code in the workspace or load the demo project.
                   </td>
                 </tr>
               </tbody>
@@ -458,12 +526,64 @@
         </div>
       </section>
 
-      <!-- ==================== SCREEN 4: REPORTS ==================== -->
+      <!-- ==================== SCREEN 4: PRIORITIZED ACTION PLAN ==================== -->
+      <section id="view-actionplan" class="hidden space-y-6">
+        <div class="bg-[#1e293b] border border-slate-800 rounded-xl p-6">
+          <h2 class="text-base font-semibold text-white">Prioritized Action Plan</h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Engineered 3-tier remediation roadmap organized by impact and urgency. Tackle high-risk vulnerabilities first, followed by system correctness, and refactor for maintainability last.
+          </p>
+        </div>
+
+        <!-- Tier 1: Fix First -->
+        <div class="bg-[#1e293b] border border-rose-900/40 rounded-xl p-6 space-y-3">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+            <h3 class="text-sm font-bold text-rose-300 tracking-wide">1. Fix First: Critical Bugs & Security Vulnerabilities</h3>
+          </div>
+          <p class="text-xs text-slate-400">
+            High-risk security hazards, arbitrary code execution, raw credentials, unconstrained buffer mutations, and data destruction risks.
+          </p>
+          <div id="plan-tier-1" class="space-y-2.5 pt-2">
+            <p class="text-xs text-slate-500">No critical issues identified.</p>
+          </div>
+        </div>
+
+        <!-- Tier 2: Fix Next -->
+        <div class="bg-[#1e293b] border border-amber-900/40 rounded-xl p-6 space-y-3">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+            <h3 class="text-sm font-bold text-amber-300 tracking-wide">2. Fix Next: Correctness, Reliability, Performance & Error Handling</h3>
+          </div>
+          <p class="text-xs text-slate-400">
+            Swallowed exceptions, unhandled branch states, performance bottlenecks, unindexed queries, and boundary condition risks.
+          </p>
+          <div id="plan-tier-2" class="space-y-2.5 pt-2">
+            <p class="text-xs text-slate-500">No reliability issues identified.</p>
+          </div>
+        </div>
+
+        <!-- Tier 3: Improve Later -->
+        <div class="bg-[#1e293b] border border-blue-900/40 rounded-xl p-6 space-y-3">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-3 h-3 rounded-full bg-blue-400"></span>
+            <h3 class="text-sm font-bold text-blue-300 tracking-wide">3. Improve Later: Code Quality, Structure, Testing & Refactoring</h3>
+          </div>
+          <p class="text-xs text-slate-400">
+            Legacy syntax, missing tests, unaddressed TODO annotations, style consistency (PEP 8, ESLint), and architectural decomposition.
+          </p>
+          <div id="plan-tier-3" class="space-y-2.5 pt-2">
+            <p class="text-xs text-slate-500">No code-smell improvements recorded.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SCREEN 5: AUDIT REPORTS ==================== -->
       <section id="view-reports" class="hidden space-y-6">
         <!-- Reports Header Banner -->
         <div class="bg-[#1e293b] border border-slate-800 rounded-xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h2 class="text-base font-semibold text-white">Code Quality & Audit Report</h2>
+            <h2 class="text-base font-semibold text-white">Comprehensive Code Quality & Audit Report</h2>
             <p class="text-xs text-slate-400 mt-0.5">
               Generated timestamp: <span id="report-timestamp" class="font-mono text-slate-300">Not generated</span>
             </p>
@@ -482,51 +602,43 @@
 
         <!-- Problem Files Table -->
         <div class="bg-[#1e293b] border border-slate-800 rounded-xl p-5">
-          <h3 class="text-sm font-semibold text-slate-200 mb-3">Highest Risk Source Files</h3>
+          <h3 class="text-sm font-semibold text-slate-200 mb-3">Highest Risk Targets</h3>
           <div class="overflow-x-auto">
             <table class="w-full text-left text-xs">
               <thead class="bg-slate-900/60 border-b border-slate-800 text-slate-400 font-medium">
                 <tr>
-                  <th class="p-3">File Name</th>
+                  <th class="p-3">Target Name</th>
                   <th class="p-3">Language</th>
-                  <th class="p-3">High</th>
+                  <th class="p-3">Critical/High</th>
                   <th class="p-3">Medium</th>
                   <th class="p-3">Low</th>
                   <th class="p-3">Total Issues</th>
                 </tr>
               </thead>
               <tbody id="report-top-files" class="divide-y divide-slate-800 text-slate-300">
-                <tr><td colspan="6" class="p-6 text-center text-slate-500">Run an analysis to inspect file distribution.</td></tr>
+                <tr><td colspan="6" class="p-6 text-center text-slate-500">Run an analysis to inspect target breakdown.</td></tr>
               </tbody>
             </table>
           </div>
         </div>
 
-        <!-- Issue Categories Distribution -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div class="bg-[#1e293b] border border-slate-800 rounded-xl p-5">
-            <h3 class="text-sm font-semibold text-slate-200 mb-3">Issues by Classification Category</h3>
-            <div id="report-category-breakdown" class="space-y-3">
-              <p class="text-xs text-slate-500 py-4 text-center">No findings available.</p>
-            </div>
-          </div>
-          <div class="bg-[#1e293b] border border-slate-800 rounded-xl p-5">
-            <h3 class="text-sm font-semibold text-slate-200 mb-3">Executive Summary</h3>
-            <div id="report-executive-summary" class="text-xs text-slate-300 space-y-2 leading-relaxed">
-              <p class="text-slate-500">Awaiting code inspection results.</p>
-            </div>
+        <!-- Executive Summary -->
+        <div class="bg-[#1e293b] border border-slate-800 rounded-xl p-5">
+          <h3 class="text-sm font-semibold text-slate-200 mb-3">Executive Summary & Architectural Fit</h3>
+          <div id="report-executive-summary" class="text-xs text-slate-300 space-y-2.5 leading-relaxed">
+            <p class="text-slate-500">Awaiting code inspection results.</p>
           </div>
         </div>
       </section>
 
-      <!-- ==================== SCREEN 5: LANGUAGE SUPPORT ==================== -->
+      <!-- ==================== SCREEN 6: LANGUAGE SUPPORT ==================== -->
       <section id="view-languages" class="hidden space-y-5">
         <div class="bg-[#1e293b] border border-slate-800 rounded-xl p-6">
           <div class="flex items-center justify-between mb-4">
             <div>
               <h2 class="text-base font-semibold text-white">Supported Languages & Architecture Matrix</h2>
               <p class="text-xs text-slate-400">
-                Language-agnostic pluggable analyzer architecture. Clear separation between full static checks and heuristic pattern analyzers.
+                Language-agnostic pluggable analyzer architecture. Separation between full basic static analyzers and heuristic pattern analyzers.
               </p>
             </div>
             <span class="px-2.5 py-1 rounded-full text-xs font-mono bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">9 Languages</span>
@@ -610,30 +722,24 @@
               </tbody>
             </table>
           </div>
-
-          <div class="mt-4 p-4 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-400 leading-relaxed">
-            <span class="font-semibold text-slate-200">Architectural Note:</span> In accordance with our single-responsibility analyzer model, each analyzer implements a standard contract: <code class="text-emerald-400">analyze(filename, content, settings)</code> returning a standardized array of normalized finding objects. Deeper AST parser modules (e.g. Tree-sitter WebAssembly or Babel standalone) can be dropped in seamlessly.
-          </div>
         </div>
       </section>
 
-      <!-- ==================== SCREEN 6: SETTINGS ==================== -->
+      <!-- ==================== SCREEN 7: SETTINGS ==================== -->
       <section id="view-settings" class="hidden space-y-5">
         <div class="bg-[#1e293b] border border-slate-800 rounded-xl p-6 max-w-2xl">
           <h2 class="text-base font-semibold text-white mb-1">Analyzer & History Settings</h2>
           <p class="text-xs text-slate-400 mb-6">Configure evaluation sensitivity and client-side browser storage options.</p>
 
           <div class="space-y-4">
-            <!-- Toggle 1 -->
             <label class="flex items-center justify-between p-3 rounded-lg bg-slate-900/60 border border-slate-800 cursor-pointer">
               <div>
-                <span class="text-sm font-medium text-slate-200 block">Include Low Severity Issues</span>
+                <span class="text-sm font-medium text-slate-200 block">Include Low Severity & Style Issues</span>
                 <span class="text-xs text-slate-400">Report cosmetic style issues, line lengths, and minor warnings.</span>
               </div>
               <input type="checkbox" id="setting-include-low" onchange="settings.save()" class="w-4 h-4 rounded text-emerald-500 focus:ring-emerald-500 bg-slate-800 border-slate-700" checked>
             </label>
 
-            <!-- Toggle 2 -->
             <label class="flex items-center justify-between p-3 rounded-lg bg-slate-900/60 border border-slate-800 cursor-pointer">
               <div>
                 <span class="text-sm font-medium text-slate-200 block">Include TODO and FIXME Comments</span>
@@ -642,7 +748,6 @@
               <input type="checkbox" id="setting-include-todo" onchange="settings.save()" class="w-4 h-4 rounded text-emerald-500 focus:ring-emerald-500 bg-slate-800 border-slate-700" checked>
             </label>
 
-            <!-- Toggle 3 -->
             <label class="flex items-center justify-between p-3 rounded-lg bg-slate-900/60 border border-slate-800 cursor-pointer">
               <div>
                 <span class="text-sm font-medium text-slate-200 block">Save Analysis History</span>
@@ -661,72 +766,27 @@
         </div>
       </section>
 
-      <!-- ==================== SCREEN 7: ABOUT ==================== -->
+      <!-- ==================== SCREEN 8: ABOUT ==================== -->
       <section id="view-about" class="hidden space-y-6">
         <div class="bg-[#1e293b] border border-slate-800 rounded-xl p-6 max-w-4xl space-y-6">
           <div>
-            <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">Academic Capstone Demo</span>
+            <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">Senior Review Architecture</span>
             <h2 class="text-xl font-bold text-white mt-1">CodeLens AI — Multi-Language Static Code Review Assistant</h2>
             <p class="text-xs text-slate-400 mt-1 leading-relaxed">
-              Designed as an educational developer-tool utility for fast, deterministic, offline static source analysis and AI-style remediation guidance.
+              Provides deterministic, context-rich, actionable, and 3-tiered code evaluations across source files and user-pasted code snippets without executing any untrusted code.
             </p>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-            <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 space-y-2">
-              <h3 class="font-semibold text-slate-200">Key Features</h3>
-              <ul class="list-disc list-inside text-slate-400 space-y-1">
-                <li>Multi-Language Ingestion (.py, .js, .sql, .html, .css, .java, .cs, .c, .cpp)</li>
-                <li>Pure client-side ZIP archive unpacker</li>
-                <li>Offline, deterministic rule-based AI explanation generation</li>
-                <li>Exportable audit reports in structured JSON and print-ready HTML</li>
-                <li>Interactive health score heuristic calculator (0-100)</li>
-              </ul>
-            </div>
-
-            <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 space-y-2">
-              <h3 class="font-semibold text-slate-200">Security & Sandboxing</h3>
-              <p class="text-slate-400 leading-relaxed">
-                Source code uploaded to CodeLens AI is strictly parsed as immutable UTF-8 string tokens. It is <strong class="text-slate-200">never evaluated, compiled, or executed via eval()</strong>, nor transmitted across any external network interface.
-              </p>
-            </div>
-          </div>
-
           <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 space-y-2 text-xs">
-            <h3 class="font-semibold text-slate-200">Architecture Diagram</h3>
-            <pre class="bg-black/40 p-3 rounded font-mono text-[11px] text-emerald-400/90 overflow-x-auto leading-tight">
-+-------------------------------------------------------------------------+
-| Browser UI (HTML5 + Tailwind CSS + Vanilla JS SPA Router)               |
-+-------------------------------------------------------------------------+
-                                     |
-               +---------------------+---------------------+
-               |                                           |
-    [ FileHandler / ZIP Decoder ]                 [ Sample Project ]
-               |                                           |
-               +---------------------+---------------------+
-                                     | (File objects)
-                        [ Language Detector ]
-                                     |
-          +--------------------------+--------------------------+
-          |                                                     |
-  [ Static Analyzers (Full) ]                       [ Pattern Analyzers (Basic) ]
-  - Python (eval, secrets, except)                  - C / C++ (gets, strcpy, system)
-  - JavaScript (XSS, innerHTML, var)                - Java (empty catch, secrets)
-  - SQL (concatenation, select *)                   - C# (empty catch, Process.Start)
-  - HTML (alt, onclick, viewport)
-  - CSS (!important, duplicate selectors)
-          |                                                     |
-          +--------------------------+--------------------------+
-                                     | (Normalized findings)
-                         [ AI Explanation Engine ]
-                                     |
-                         [ Reports & Health Score ]
-            </pre>
+            <h3 class="font-semibold text-slate-200">3-Tier Review Standard</h3>
+            <p class="text-slate-400">
+              Each finding is delivered across three pedagogical layers: <strong>Beginner</strong> (plain English without jargon), <strong>Technical</strong> (exact code logic and failure mechanisms), and <strong>Advanced</strong> (deep security, memory, concurrency, and production impact).
+            </p>
           </div>
 
           <div class="border-t border-slate-800 pt-4 flex items-center justify-between text-xs text-slate-400">
-            <span>Academic Capstone & Demo Submission</span>
-            <span class="text-slate-500 font-mono">v1.2.0 • Offline Ready</span>
+            <span>Academic Demonstration & Senior Code Reviewer</span>
+            <span class="text-slate-500 font-mono">v2.0.0 • Offline Ready</span>
           </div>
         </div>
       </section>
@@ -734,14 +794,15 @@
     </div>
   </main>
 
-  <!-- ==================== ISSUE DETAIL & AI ASSISTANT MODAL ==================== -->
-  <div id="issue-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-[#1e293b] border border-slate-700 w-full max-w-3xl rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in duration-200">
+  <!-- ==================== 3-LEVEL ISSUE DETAIL & REMEDIATION MODAL ==================== -->
+  <div id="issue-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#1e293b] border border-slate-700 w-full max-w-4xl rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] animate-in fade-in duration-200">
+      
       <!-- Modal Header -->
-      <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/70">
+      <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/80">
         <div class="flex items-center space-x-3">
-          <span id="modal-severity-badge" class="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider">High</span>
-          <h3 id="modal-issue-title" class="font-semibold text-slate-100 text-sm">Issue Title</h3>
+          <span id="modal-severity-badge" class="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider">Critical</span>
+          <h3 id="modal-finding-title" class="font-semibold text-slate-100 text-sm">Finding Title</h3>
         </div>
         <button onclick="issuesUI.closeModal()" class="text-slate-400 hover:text-white p-1 rounded-lg">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -750,74 +811,92 @@
 
       <!-- Modal Body -->
       <div class="p-6 overflow-y-auto space-y-5 text-xs">
+        
         <!-- Metadata bar -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-slate-900/60 p-3 rounded-lg border border-slate-800 font-mono text-[11px]">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-slate-900/70 p-3 rounded-lg border border-slate-800 font-mono text-[11px]">
           <div>
-            <span class="text-slate-500 block">File:</span>
-            <span id="modal-filename" class="text-slate-200 font-medium break-all">-</span>
+            <span class="text-slate-500 block">Severity:</span>
+            <span id="modal-meta-severity" class="font-bold text-rose-400">-</span>
+          </div>
+          <div>
+            <span class="text-slate-500 block">Location:</span>
+            <span id="modal-meta-location" class="text-slate-200 font-medium break-all">-</span>
           </div>
           <div>
             <span class="text-slate-500 block">Language:</span>
-            <span id="modal-language" class="text-emerald-400 font-medium">-</span>
+            <span id="modal-meta-language" class="text-emerald-400 font-medium">-</span>
           </div>
           <div>
-            <span class="text-slate-500 block">Line:</span>
-            <span id="modal-line" class="text-amber-400 font-medium">-</span>
-          </div>
-          <div>
-            <span class="text-slate-500 block">Category:</span>
-            <span id="modal-type" class="text-slate-300 font-medium">-</span>
+            <span class="text-slate-500 block">Dimension:</span>
+            <span id="modal-meta-dimension" class="text-slate-300 font-medium truncate block">-</span>
           </div>
         </div>
 
-        <!-- Detected Snippet -->
+        <!-- Detected Code Snippet -->
         <div>
-          <span class="text-slate-400 font-medium block mb-1">Detected Code Snippet:</span>
-          <pre id="modal-code-snippet" class="bg-slate-950 p-3 rounded-lg border border-slate-800 font-mono text-rose-300 overflow-x-auto code-block"></pre>
+          <span class="text-slate-400 font-semibold block mb-1">Detected Code Snippet:</span>
+          <pre id="modal-code-snippet" class="bg-slate-950 p-3.5 rounded-lg border border-slate-800 font-mono text-rose-300 overflow-x-auto code-block leading-relaxed"></pre>
         </div>
 
-        <!-- AI Assistant Explanation Card -->
+        <!-- 3-TIER EXPLANATIONS BLOCK -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center space-x-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span>3-Level Technical Explanation</span>
+          </h4>
+
+          <!-- Level 1: Beginner -->
+          <div class="bg-slate-900/60 border border-slate-800 rounded-lg p-3.5 space-y-1">
+            <div class="flex items-center space-x-2">
+              <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-blue-500/20 text-blue-300">1. Beginner Explanation</span>
+              <span class="text-[11px] text-slate-500">(Plain English without jargon)</span>
+            </div>
+            <p id="modal-beginner-exp" class="text-slate-300 leading-relaxed pt-1"></p>
+          </div>
+
+          <!-- Level 2: Technical -->
+          <div class="bg-slate-900/60 border border-slate-800 rounded-lg p-3.5 space-y-1">
+            <div class="flex items-center space-x-2">
+              <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-amber-500/20 text-amber-300">2. Technical Explanation</span>
+              <span class="text-[11px] text-slate-500">(Exact mechanics and affected logic)</span>
+            </div>
+            <p id="modal-technical-exp" class="text-slate-300 leading-relaxed pt-1 font-mono text-[11px]"></p>
+          </div>
+
+          <!-- Level 3: Advanced -->
+          <div class="bg-slate-900/60 border border-slate-800 rounded-lg p-3.5 space-y-1">
+            <div class="flex items-center space-x-2">
+              <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-rose-500/20 text-rose-300">3. Advanced Explanation</span>
+              <span class="text-[11px] text-slate-500">(Security, scalability, and production impact)</span>
+            </div>
+            <p id="modal-advanced-exp" class="text-slate-300 leading-relaxed pt-1"></p>
+          </div>
+        </div>
+
+        <!-- REMEDIATION & FIX BLOCK -->
         <div class="bg-gradient-to-br from-slate-900 to-slate-900/90 border border-emerald-500/30 rounded-xl p-4 space-y-3">
           <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-              <div class="w-6 h-6 rounded bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">
-                AI
-              </div>
-              <span class="font-semibold text-slate-100">Automated Remediation Analysis</span>
-            </div>
-            <span id="modal-confidence-badge" class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-              Confidence: High
+            <span class="font-semibold text-slate-100 flex items-center space-x-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span>Suggested Fix Snippet</span>
             </span>
+            <button onclick="issuesUI.copyFix()" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded text-xs flex items-center space-x-1.5 transition">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+              <span id="copy-btn-text">Copy Fix Snippet</span>
+            </button>
           </div>
 
-          <p id="modal-description" class="text-slate-300 leading-relaxed"></p>
+          <pre id="modal-suggested-fix" class="bg-black/70 p-3.5 rounded-lg border border-slate-800 font-mono text-emerald-300 overflow-x-auto code-block leading-relaxed"></pre>
 
-          <div>
-            <span class="text-slate-400 font-medium block mb-1">Recommendation:</span>
-            <p id="modal-recommendation" class="text-slate-300 leading-relaxed"></p>
-          </div>
-
-          <!-- Suggested Fix Code Block -->
-          <div>
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-slate-400 font-medium">Suggested Fix Snippet:</span>
-              <button onclick="issuesUI.copyFix()" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded text-[11px] flex items-center space-x-1 transition">
-                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-                <span id="copy-btn-text">Copy Fix</span>
-              </button>
-            </div>
-            <pre id="modal-suggested-fix" class="bg-black/60 p-3 rounded-lg border border-slate-800 font-mono text-emerald-300 overflow-x-auto code-block"></pre>
-          </div>
-
-          <div class="text-[11px] text-slate-500 flex items-center space-x-1.5 pt-1">
-            <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <span>This is an automated suggestion. Review it before applying any change.</span>
+          <div class="pt-1">
+            <span class="text-slate-400 font-semibold block mb-1">Why this fix works:</span>
+            <p id="modal-why-fix-works" class="text-slate-300 leading-relaxed"></p>
           </div>
         </div>
       </div>
 
       <!-- Modal Footer -->
-      <div class="px-6 py-3 bg-slate-900 border-t border-slate-800 flex justify-end">
+      <div class="px-6 py-3.5 bg-slate-900 border-t border-slate-800 flex justify-end">
         <button onclick="issuesUI.closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-medium transition">
           Close Inspector
         </button>
@@ -828,22 +907,23 @@
   <!-- Hidden Container for Printable HTML Report -->
   <div id="printable-report" class="hidden p-8 text-black bg-white"></div>
 
-  <!-- ==================== JAVASCRIPT APPLICATION CODE ==================== -->
+  <!-- ==================== APPLICATION SCRIPTS ==================== -->
   <script>
     /**
-     * CodeLens AI — Multi-Language Static Code Review Assistant
-     * Clean, modular vanilla JS architecture.
+     * CodeLens AI — Senior Code Reviewer & Multi-Language Static Engine
      */
 
     // --- APPLICATION STATE ---
     const state = {
+      pastedCode: '',
+      pastedLang: 'auto',
       stagedFiles: [],   // Array of { name, content, size, language }
-      currentIssues: [], // Normalized findings array
+      currentIssues: [], // Normalized 3-level findings
       activeFilter: {
         search: '',
         severity: 'ALL',
         language: 'ALL',
-        type: 'ALL',
+        dimension: 'ALL',
         sort: 'severity'
       },
       settings: {
@@ -856,10 +936,10 @@
       lastAnalysisTimestamp: null
     };
 
-    // --- 1. LOCAL STORAGE & PERSISTENCE MODULE ---
+    // --- 1. LOCAL STORAGE & PERSISTENCE ---
     const storage = {
-      STORAGE_KEY_HISTORY: 'codelens_analysis_history',
-      STORAGE_KEY_SETTINGS: 'codelens_app_settings',
+      STORAGE_KEY_HISTORY: 'codelens_analysis_history_v2',
+      STORAGE_KEY_SETTINGS: 'codelens_app_settings_v2',
 
       init() {
         try {
@@ -869,7 +949,7 @@
           }
           this.applySettingsToUI();
         } catch (e) {
-          console.warn('LocalStorage unavailable or disabled:', e);
+          console.warn('LocalStorage unavailable:', e);
         }
       },
 
@@ -892,7 +972,7 @@
           if (chkHist) state.settings.saveHistory = chkHist.checked;
 
           localStorage.setItem(this.STORAGE_KEY_SETTINGS, JSON.stringify(state.settings));
-          ui.showFlash('Settings saved successfully.', 'success');
+          ui.showFlash('Settings saved.', 'success');
         } catch (e) {
           console.warn('Could not save settings:', e);
         }
@@ -905,12 +985,11 @@
           history.unshift({
             id: 'run_' + Date.now(),
             timestamp: new Date().toISOString(),
-            filesCount: summary.filesCount,
+            targetsCount: summary.targetsCount,
             issuesCount: summary.issuesCount,
             healthScore: summary.healthScore,
             highCount: summary.highCount
           });
-          // Keep up to 10 latest entries
           localStorage.setItem(this.STORAGE_KEY_HISTORY, JSON.stringify(history.slice(0, 10)));
           dashboardUI.renderHistory();
         } catch (e) {
@@ -942,9 +1021,8 @@
       save() { storage.saveSettings(); }
     };
 
-    // --- 2. LANGUAGE DETECTOR MODULE ---
+    // --- 2. LANGUAGE DETECTOR ---
     const languageDetector = {
-      // Extension map
       EXT_MAP: {
         'py': 'Python',
         'js': 'JavaScript',
@@ -962,92 +1040,95 @@
       },
 
       detect(filename, content) {
-        const dotIdx = filename.lastIndexOf('.');
-        if (dotIdx !== -1) {
-          const ext = filename.substring(dotIdx + 1).toLowerCase();
-          if (this.EXT_MAP[ext]) {
-            if (ext === 'h') {
-              // Heuristic check between C and C++
-              if (/class\s+\w+|namespace\s+\w+|template\s*</i.test(content)) {
-                return 'C++';
+        if (filename && filename !== 'pasted_code_snippet') {
+          const dotIdx = filename.lastIndexOf('.');
+          if (dotIdx !== -1) {
+            const ext = filename.substring(dotIdx + 1).toLowerCase();
+            if (this.EXT_MAP[ext]) {
+              if (ext === 'h') {
+                return /class\s+\w+|namespace\s+\w+|template\s*</i.test(content) ? 'C++' : 'C';
               }
-              return 'C';
+              return this.EXT_MAP[ext];
             }
-            return this.EXT_MAP[ext];
           }
         }
 
-        // Fallback content-based heuristic
+        // Heuristic analysis on content
         if (/<!DOCTYPE html>|<html|<head|<body/i.test(content)) return 'HTML';
         if (/\bdef\s+\w+\(.*\):|\bimport\s+sys|\bfrom\s+\w+\s+import/m.test(content)) return 'Python';
-        if (/\bfunction\s+\w+\(.*\)|const\s+\w+\s*=|let\s+\w+\s*=/m.test(content)) return 'JavaScript';
-        if (/\bSELECT\b.*\bFROM\b|\bCREATE\s+TABLE\b|\bINSERT\s+INTO\b/im.test(content)) return 'SQL';
+        if (/\bfunction\s+\w+\(.*\)|const\s+\w+\s*=|let\s+\w+\s*=|console\.log/m.test(content)) return 'JavaScript';
+        if (/\bSELECT\b.*\bFROM\b|\bCREATE\s+TABLE\b|\bINSERT\s+INTO\b|\bUPDATE\s+\w+\s+SET\b/im.test(content)) return 'SQL';
         if (/\bpublic\s+class\s+\w+|\bSystem\.out\.println\(/m.test(content)) return 'Java';
         if (/#include\s+<iostream>|std::cout/m.test(content)) return 'C++';
         if (/#include\s+<stdio\.h>|printf\(/m.test(content)) return 'C';
         if (/\bnamespace\s+\w+|\bConsole\.WriteLine\(/m.test(content)) return 'C#';
+        if (/[.#][\w-]+\s*\{[^}]*\}/m.test(content)) return 'CSS';
 
-        return 'Unsupported';
+        return 'JavaScript'; // Default fallback
       }
     };
 
-    // --- 3. PLUGGABLE STATIC CODE ANALYZERS ---
-
-    // Common utility for lines
+    // --- 3. REUSABLE REVIEW UTILITIES & SCANNER ---
     function splitLines(content) {
       return content.split(/\r?\n/);
     }
 
     // Common secret scanner
-    function checkHardcodedSecrets(line, lineNum, filename, language) {
+    function checkHardcodedSecrets(line, lineNum, location, language) {
       const secretRegex = /(?:api[_-]?key|secret|password|passwd|token|auth[_-]?token|access[_-]?key)\s*[:=]\s*["']([^"']{5,})["']/i;
       const match = line.match(secretRegex);
       if (match) {
-        // Exclude sample dummy placeholders if evident
         return {
-          id: `sec_${filename}_${lineNum}`,
-          file: filename,
+          id: `sec_${Date.now()}_${lineNum}`,
+          title: 'Hardcoded Secret or Credential Token',
+          severity: 'Critical',
+          dimension: 'Security risks and unsafe coding practices',
+          location: `${location} (Line ${lineNum})`,
           language: language,
           line: lineNum,
-          severity: 'High',
-          type: 'Security',
-          title: 'Possible Hardcoded Secret or Credential',
-          description: `The variable or assignment matches credentials/secrets pattern (${match[0].slice(0, 24)}...). Storing raw secrets in source code risks leakages via version control.`,
           code: line.trim(),
-          recommendation: 'Extract sensitive credentials into secure environment variables, a key vault, or an untracked config file.',
-          suggestedFix: `// Load from environment or config vault\nconst secretKey = process.env.API_KEY || ConfigurationManager.Get("API_KEY");`,
-          confidence: 'High'
+          beginner: 'Passwords, keys, or secret tokens are typed directly into the code. Anyone who can see this file or project can copy your private credentials and access your accounts.',
+          technical: `Assignment matches credentials pattern (${match[0].slice(0, 24)}...). Storing raw authentication tokens in source commits exposes credentials to version control logs and client bundles.`,
+          advanced: 'Violates CWE-798 (Use of Hard-coded Credentials) and OWASP Top 10 A07:2021. Secrets must be externalized via environment variables (e.g., process.env, os.environ) or injected via a secure secrets manager (AWS Secrets Manager, HashiCorp Vault) during deployment.',
+          suggestedFix: language === 'Python' 
+            ? `import os\n# Load dynamically from environment:\nAPI_KEY = os.environ.get("API_KEY")`
+            : `// Load dynamically from runtime environment:\nconst apiKey = process.env.API_KEY || ConfigurationManager.Get("API_KEY");`,
+          whyFixWorks: 'Removes the plaintext secret from source code entirely, allowing credentials to rotate safely in production without redeploying code.'
         };
       }
       return null;
     }
 
     // Common TODO/FIXME scanner
-    function checkTodoComments(line, lineNum, filename, language) {
+    function checkTodoComments(line, lineNum, location, language) {
       const todoRegex = /(?:\/\/|#|\/\*|--)\s*(TODO|FIXME|HACK|XXX)\b:?\s*(.*)$/i;
       const match = line.match(todoRegex);
       if (match) {
+        const marker = match[1].toUpperCase();
         return {
-          id: `todo_${filename}_${lineNum}`,
-          file: filename,
+          id: `todo_${Date.now()}_${lineNum}`,
+          title: `Unresolved ${marker} Work Marker`,
+          severity: 'Low',
+          dimension: 'Maintainability, readability, naming, duplication, and code-quality issues',
+          location: `${location} (Line ${lineNum})`,
           language: language,
           line: lineNum,
-          severity: 'Low',
-          type: 'Task',
-          title: `Unresolved ${match[1].toUpperCase()} Annotation`,
-          description: `Detected unfinished work marker '${match[1].toUpperCase()}': ${match[2] || 'No comment provided'}.`,
           code: line.trim(),
-          recommendation: 'Track this task in an issue tracker or complete the implementation before deployment.',
-          suggestedFix: `// Ensure implementation is verified and remove ${match[1].toUpperCase()} marker`,
-          confidence: 'High'
+          beginner: `The author left an unfinished note saying '${marker}'. This means part of the work is incomplete or temporarily patched.`,
+          technical: `Detected incomplete development annotation '${marker}': "${match[2] || 'No description'}". Lingering TODOs indicate technical debt and missing test coverage.`,
+          advanced: 'Unresolved technical debt markers in production codepaths often conceal unimplemented edge cases, missing validation routines, or forgotten security safeguards.',
+          suggestedFix: `// Resolve the planned task, add corresponding unit tests, and remove the ${marker} marker`,
+          whyFixWorks: 'Ensures the codebase remains clean, documented, and free of abandoned code paths.'
         };
       }
       return null;
     }
 
-    // 3.1 Python Analyzer
+    // --- 4. MULTI-LANGUAGE ANALYZERS ---
+
+    // 4.1 Python Analyzer
     const pythonAnalyzer = {
-      analyze(filename, content, config) {
+      analyze(location, content, config) {
         const issues = [];
         const lines = splitLines(content);
 
@@ -1059,39 +1140,41 @@
           if (/\b(?:eval|exec)\s*\(/.test(trimmed) && !trimmed.startsWith('#')) {
             issues.push({
               id: `py_eval_${lineNum}`,
-              file: filename,
+              title: 'Arbitrary Code Execution Hazard (eval / exec)',
+              severity: 'Critical',
+              dimension: 'Security risks and unsafe coding practices',
+              location: `${location} (Line ${lineNum})`,
               language: 'Python',
               line: lineNum,
-              severity: 'High',
-              type: 'Security',
-              title: 'Use of Dangerous Dynamic Execution (eval / exec)',
-              description: 'Executing dynamic code strings with eval() or exec() can enable Arbitrary Code Execution (ACE) if inputs are unverified.',
               code: trimmed,
-              recommendation: 'Use ast.literal_eval() for safe data deserialization or refactor to avoid dynamic evaluation.',
-              suggestedFix: `import ast\n# Safe alternative for parsing literal structures:\ndata = ast.literal_eval(untrusted_str)`,
-              confidence: 'High'
+              beginner: 'The program runs text instructions dynamically as code. If an attacker inputs dangerous text, the system will execute it and can be completely hacked.',
+              technical: `Direct execution of arbitrary string expressions via eval() or exec() bypasses lexical validation and exposes the runtime namespace to ACE (Arbitrary Code Execution).`,
+              advanced: 'Violates CWE-95 (Improper Neutralization of Directives in Dynamically Evaluated Code). Can permit remote shell execution or file exfiltration. Use ast.literal_eval() for safe data deserialization or explicit dispatch tables.',
+              suggestedFix: `import ast\n# Safe parsing of literal data structures:\nsafe_data = ast.literal_eval(payload_string)`,
+              whyFixWorks: 'ast.literal_eval restricts parsing exclusively to Python primitive literals (strings, numbers, tuples, lists, dicts, booleans) and forbids expression execution.'
             });
           }
 
           // Rule 2: Hardcoded Secrets
-          const secret = checkHardcodedSecrets(trimmed, lineNum, filename, 'Python');
+          const secret = checkHardcodedSecrets(trimmed, lineNum, location, 'Python');
           if (secret) issues.push(secret);
 
           // Rule 3: Bare except clause
           if (/^except\s*:/.test(trimmed)) {
             issues.push({
               id: `py_bare_except_${lineNum}`,
-              file: filename,
+              title: 'Bare except Clause Intercepts System Termination',
+              severity: 'Medium',
+              dimension: 'Poor or missing error handling',
+              location: `${location} (Line ${lineNum})`,
               language: 'Python',
               line: lineNum,
-              severity: 'Medium',
-              type: 'Bug / Error',
-              title: 'Bare except Clause Catches SystemExit and KeyboardInterrupt',
-              description: 'A bare "except:" catches BaseException, inadvertently intercepting process termination interrupts like SIGINT and hiding bugs.',
               code: trimmed,
-              recommendation: 'Catch explicit exception classes, such as "except Exception:" or specific domain exceptions.',
-              suggestedFix: `except Exception as err:\n    logger.error("Handled exception: %s", err)`,
-              confidence: 'High'
+              beginner: 'This code catches every error without checking what kind of error happened. It can even stop you from quitting the program with Ctrl+C.',
+              technical: 'A bare "except:" clause catches BaseException, thereby intercepting KeyboardInterrupt and SystemExit, masking fatal interpreter panics.',
+              advanced: 'Violates PEP 8 and Python reliability standards. Exceptions should specify concrete Exception subclasses, logging the stack trace before handling or re-raising.',
+              suggestedFix: `except Exception as err:\n    logger.error("Handled recoverable error: %s", err)\n    raise`,
+              whyFixWorks: 'Catches only standard application errors derived from Exception, allowing system interrupts to terminate gracefully.'
             });
           }
 
@@ -1099,23 +1182,24 @@
           if (/^print\s*\(/.test(trimmed) && !trimmed.startsWith('#')) {
             issues.push({
               id: `py_print_${lineNum}`,
-              file: filename,
+              title: 'Residual print() Diagnostic Statement',
+              severity: 'Low',
+              dimension: 'Maintainability, readability, naming, duplication, and code-quality issues',
+              location: `${location} (Line ${lineNum})`,
               language: 'Python',
               line: lineNum,
-              severity: 'Low',
-              type: 'Code Smell',
-              title: 'Residual print() Debugging Statement',
-              description: 'Using raw print() statements for diagnostics clutters standard output and lacks configurable log levels or timestamping.',
               code: trimmed,
-              recommendation: 'Employ the standard logging library with structured levels (debug, info, warning).',
-              suggestedFix: `import logging\nlogging.basicConfig(level=logging.INFO)\nlogging.info("Processing step executed")`,
-              confidence: 'Medium'
+              beginner: 'Print statements were left in the code. They clutter the screen and slow the system down.',
+              technical: 'Raw print() calls write directly to sys.stdout without log levels, timestamps, or routing control.',
+              advanced: 'Unstructured standard out logging impedes observability in production APM tools and lacks configurable loglevel filtering.',
+              suggestedFix: `import logging\nlogger = logging.getLogger(__name__)\nlogger.debug("Diagnostic data: %s", payload)`,
+              whyFixWorks: 'Enables structured logging that can be silenced or formatted without changing source files.'
             });
           }
 
           // Rule 5: TODO / FIXME
           if (config.includeTodo) {
-            const todo = checkTodoComments(trimmed, lineNum, filename, 'Python');
+            const todo = checkTodoComments(trimmed, lineNum, location, 'Python');
             if (todo) issues.push(todo);
           }
 
@@ -1123,17 +1207,18 @@
           if (config.includeLow && line.length > 100) {
             issues.push({
               id: `py_longline_${lineNum}`,
-              file: filename,
+              title: 'PEP 8 Line Length Violation (>100 Chars)',
+              severity: 'Informational',
+              dimension: 'Maintainability, readability, naming, duplication, and code-quality issues',
+              location: `${location} (Line ${lineNum})`,
               language: 'Python',
               line: lineNum,
-              severity: 'Low',
-              type: 'Code Smell',
-              title: 'Excessive Line Length (PEP 8 violation)',
-              description: `Line length is ${line.length} characters, exceeding the recommended limit of 100 characters.`,
-              code: line.substring(0, 90) + '...',
-              recommendation: 'Wrap expressions across multiple lines using parenthesis or break into intermediate helper variables.',
-              suggestedFix: `# Break expressions into multi-line blocks\nformatted_value = (\n    first_part + second_part\n)`,
-              confidence: 'Medium'
+              code: line.substring(0, 85) + '...',
+              beginner: 'This line of code is very long, making it hard to read without scrolling sideways.',
+              technical: `Line length is ${line.length} characters, exceeding the PEP 8 recommended readability limit of 79-100 characters.`,
+              advanced: 'Excessive line length increases cognitive load during pull request reviews and causes line-wrapping visual defects in terminal diff tools.',
+              suggestedFix: `# Break expression across multiple lines using parenthesis:\nresult = (\n    first_expression\n    + second_expression\n)`,
+              whyFixWorks: 'Parenthesized line breaks adhere to PEP 8 standards without requiring fragile trailing backslashes.'
             });
           }
         });
@@ -1142,9 +1227,9 @@
       }
     };
 
-    // 3.2 JavaScript Analyzer
+    // 4.2 JavaScript Analyzer
     const javascriptAnalyzer = {
-      analyze(filename, content, config) {
+      analyze(location, content, config) {
         const issues = [];
         const lines = splitLines(content);
 
@@ -1156,17 +1241,18 @@
           if (/\beval\s*\(/.test(trimmed) && !trimmed.startsWith('//')) {
             issues.push({
               id: `js_eval_${lineNum}`,
-              file: filename,
+              title: 'Direct eval() Execution Risk',
+              severity: 'Critical',
+              dimension: 'Security risks and unsafe coding practices',
+              location: `${location} (Line ${lineNum})`,
               language: 'JavaScript',
               line: lineNum,
-              severity: 'High',
-              type: 'Security',
-              title: 'Dynamic Code Execution via eval()',
-              description: 'Direct calls to eval() execute arbitrary code in the caller context, creating severe Cross-Site Scripting (XSS) and injection vulnerabilities.',
               code: trimmed,
-              recommendation: 'Use JSON.parse() for serialization or safe lookup maps instead of runtime code evaluation.',
-              suggestedFix: `// Safe JSON parsing\nconst data = JSON.parse(jsonPayload);`,
-              confidence: 'High'
+              beginner: 'The program executes text as live code. Malicious visitors can take control of user accounts or inject malicious scripts.',
+              technical: 'eval() dynamically compiles strings into JavaScript in the caller context, bypassing Content Security Policy (CSP) and engine JIT optimizations.',
+              advanced: 'Severe Cross-Site Scripting (XSS) and arbitrary script execution vulnerability. Replaces structured data parsing with full code execution.',
+              suggestedFix: `// Safe JSON parsing alternative:\nconst config = JSON.parse(jsonPayload);`,
+              whyFixWorks: 'JSON.parse safely extracts data structures without evaluating any executable script expressions.'
             });
           }
 
@@ -1174,17 +1260,18 @@
           if (/\.innerHTML\s*=/.test(trimmed) && !trimmed.startsWith('//')) {
             issues.push({
               id: `js_innerhtml_${lineNum}`,
-              file: filename,
+              title: 'Direct innerHTML Assignment (DOM XSS Hazard)',
+              severity: 'High',
+              dimension: 'Security risks and unsafe coding practices',
+              location: `${location} (Line ${lineNum})`,
               language: 'JavaScript',
               line: lineNum,
-              severity: 'High',
-              type: 'Security',
-              title: 'Direct innerHTML Assignment (DOM XSS Risk)',
-              description: 'Assigning unescaped user-controlled values to innerHTML allows attackers to inject malicious HTML and script elements.',
               code: trimmed,
-              recommendation: 'Use textContent, innerText, or sanitize inputs with a library like DOMPurify.',
-              suggestedFix: `element.textContent = sanitizeUserText(rawInput);`,
-              confidence: 'High'
+              beginner: 'User text is inserted into the webpage as HTML. An attacker can sneak in hidden scripts that steal passwords.',
+              technical: 'Assigning unescaped or unverified strings to innerHTML allows malicious <script> or <img onerror="..."> elements to execute in the browser DOM.',
+              advanced: 'Violates OWASP Top 10 A03:2021 (Injection - Cross-Site Scripting). Exploit leads to cookie theft, session hijacking, or defacement.',
+              suggestedFix: `// Safe text node assignment:\ncontainer.textContent = userData.username;`,
+              whyFixWorks: 'textContent treats all input strictly as plain text, ensuring HTML entities are escaped rather than rendered.'
             });
           }
 
@@ -1192,82 +1279,48 @@
           if (/document\.write\s*\(/.test(trimmed) && !trimmed.startsWith('//')) {
             issues.push({
               id: `js_docwrite_${lineNum}`,
-              file: filename,
-              language: 'JavaScript',
-              line: lineNum,
+              title: 'Deprecated document.write() Invocation',
               severity: 'Medium',
-              type: 'Code Smell',
-              title: 'Use of Deprecated document.write()',
-              description: 'document.write() alters page loading semantics, degrades performance, and can blow away existing DOM trees when called asynchronously.',
-              code: trimmed,
-              recommendation: 'Use modern DOM manipulation APIs like document.createElement() and appendChild().',
-              suggestedFix: `const el = document.createElement('div');\nel.textContent = "Safe Content";\ndocument.body.appendChild(el);`,
-              confidence: 'High'
-            });
-          }
-
-          // Rule 4: console.log() leftover
-          if (/console\.(?:log|debug|dir)\s*\(/.test(trimmed) && !trimmed.startsWith('//')) {
-            issues.push({
-              id: `js_console_${lineNum}`,
-              file: filename,
+              dimension: 'Dependency, compatibility, or configuration issues',
+              location: `${location} (Line ${lineNum})`,
               language: 'JavaScript',
               line: lineNum,
-              severity: 'Low',
-              type: 'Code Smell',
-              title: 'Console Debug Statement in Production',
-              description: 'Unfiltered console logs leak internal application states, user data, or object structures to developer tools.',
               code: trimmed,
-              recommendation: 'Remove debugging console statements or gate them behind a development environment flag.',
-              suggestedFix: `if (process.env.NODE_ENV === 'development') {\n  console.debug("Dev message");\n}`,
-              confidence: 'High'
+              beginner: 'The old document.write command can erase the whole webpage if it runs after the page has finished loading.',
+              technical: 'Calling document.write() on a loaded document automatically triggers document.open(), wiping the existing DOM structure completely.',
+              advanced: 'High performance penalty; triggers parser blocking and causes modern browsers to intervene and suppress scripts on slow 2G/3G networks.',
+              suggestedFix: `const banner = document.createElement('div');\nbanner.textContent = "Warning notice";\ndocument.body.appendChild(banner);`,
+              whyFixWorks: 'Modern DOM manipulation APIs construct elements cleanly without destroying existing document trees.'
             });
           }
 
-          // Rule 5: var usage instead of let / const
+          // Rule 4: var usage
           if (/\bvar\s+[a-zA-Z_$]/.test(trimmed) && !trimmed.startsWith('//')) {
             issues.push({
               id: `js_var_${lineNum}`,
-              file: filename,
+              title: 'Legacy "var" Declaration Keyword',
+              severity: 'Low',
+              dimension: 'Maintainability, readability, naming, duplication, and code-quality issues',
+              location: `${location} (Line ${lineNum})`,
               language: 'JavaScript',
               line: lineNum,
-              severity: 'Low',
-              type: 'Code Smell',
-              title: 'Legacy "var" Keyword Used',
-              description: '"var" has function-scope and hoisting semantics that frequently lead to accidental shadowing and subtle mutation bugs.',
               code: trimmed,
-              recommendation: 'Use block-scoped "const" for immutable references or "let" for variables that reassign.',
+              beginner: 'The keyword "var" is an outdated way to make variables and can cause strange bugs where values change unexpectedly.',
+              technical: 'var variables have function scope and hoisting semantics, creating accidental variable shadowing and leaking loop variables into outer scopes.',
+              advanced: 'Modern ES6 standards mandate block-scoped "const" and "let" to enforce immutability and prevent hoisting anomalies.',
               suggestedFix: trimmed.replace(/\bvar\b/, 'const'),
-              confidence: 'High'
+              whyFixWorks: 'const provides lexical block scoping and protects variable bindings from accidental reassignments.'
             });
           }
 
-          // Rule 6: Secrets
-          const secret = checkHardcodedSecrets(trimmed, lineNum, filename, 'JavaScript');
+          // Rule 5: Secrets
+          const secret = checkHardcodedSecrets(trimmed, lineNum, location, 'JavaScript');
           if (secret) issues.push(secret);
 
-          // Rule 7: TODO / FIXME
+          // Rule 6: TODO / FIXME
           if (config.includeTodo) {
-            const todo = checkTodoComments(trimmed, lineNum, filename, 'JavaScript');
+            const todo = checkTodoComments(trimmed, lineNum, location, 'JavaScript');
             if (todo) issues.push(todo);
-          }
-
-          // Rule 8: Long line
-          if (config.includeLow && line.length > 120) {
-            issues.push({
-              id: `js_longline_${lineNum}`,
-              file: filename,
-              language: 'JavaScript',
-              line: lineNum,
-              severity: 'Low',
-              type: 'Code Smell',
-              title: 'Line Exceeds 120 Characters',
-              description: `Line length is ${line.length} characters. Long lines degrade code review speed.`,
-              code: line.substring(0, 90) + '...',
-              recommendation: 'Decompose chain calls or long ternary operators across multiple lines.',
-              suggestedFix: `// Split parameters or chains across lines`,
-              confidence: 'Medium'
-            });
           }
         });
 
@@ -1275,53 +1328,35 @@
       }
     };
 
-    // 3.3 SQL Analyzer
+    // 4.3 SQL Analyzer
     const sqlAnalyzer = {
-      analyze(filename, content, config) {
+      analyze(location, content, config) {
         const issues = [];
         const lines = splitLines(content);
 
-        // Check full content for missing WHERE in UPDATE / DELETE
-        const fullClean = content.replace(/--.*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, '');
+        // Document-level check: UPDATE / DELETE without WHERE
+        const cleanContent = content.replace(/--.*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, '');
         const updateRegex = /\bUPDATE\s+([a-zA-Z0-9_]+)\s+SET\b([\s\S]*?)(?=;|\bWHERE\b|$)/gi;
         let match;
-        while ((match = updateRegex.exec(fullClean)) !== null) {
-          const tail = match[2];
-          if (!/WHERE\b/i.test(tail) && !/WHERE\b/i.test(fullClean.substr(match.index, 200))) {
+        while ((match = updateRegex.exec(cleanContent)) !== null) {
+          if (!/WHERE\b/i.test(match[2])) {
             issues.push({
               id: `sql_nowhere_upd_${match.index}`,
-              file: filename,
+              title: 'Catastrophic UPDATE Statement Missing WHERE Clause',
+              severity: 'Critical',
+              dimension: 'Bugs and logic errors',
+              location: `${location} (Table: ${match[1]})`,
               language: 'SQL',
               line: 1,
-              severity: 'High',
-              type: 'Bug / Error',
-              title: 'UPDATE Statement Missing WHERE Clause',
-              description: `An UPDATE statement on table "${match[1]}" was found without a WHERE predicate. This will update every single record in the table.`,
               code: match[0].slice(0, 80) + '...',
-              recommendation: 'Provide a WHERE clause targeting primary keys or specific criteria.',
-              suggestedFix: `UPDATE ${match[1]} SET ... WHERE id = :target_id;`,
-              confidence: 'High'
+              beginner: 'This command updates every single row in the database table because there is no condition saying which specific rows to change.',
+              technical: `UPDATE statement on table "${match[1]}" lacks a WHERE qualification clause, mutating all rows across the table partition.`,
+              advanced: 'Severe data corruption risk. Accidental unconstrained updates overwrite production tables and trigger long table-level write locks.',
+              suggestedFix: `UPDATE ${match[1]} SET is_verified = 1 WHERE user_id = :target_id;`,
+              whyFixWorks: 'Constrains data modifications to specific target rows using a parameterized primary key predicate.'
             });
             break;
           }
-        }
-
-        const deleteRegex = /\bDELETE\s+FROM\s+([a-zA-Z0-9_]+)\s*(;|$)/gi;
-        while ((match = deleteRegex.exec(fullClean)) !== null) {
-          issues.push({
-            id: `sql_nowhere_del_${match.index}`,
-            file: filename,
-            language: 'SQL',
-            line: 1,
-            severity: 'High',
-            type: 'Bug / Error',
-            title: 'DELETE Statement Missing WHERE Clause',
-            description: `DELETE FROM statement on "${match[1]}" without WHERE condition drops all records from the table.`,
-            code: match[0],
-            recommendation: 'Ensure a WHERE constraint is supplied, or use TRUNCATE TABLE if deliberate.',
-            suggestedFix: `DELETE FROM ${match[1]} WHERE status = 'expired';`,
-            confidence: 'High'
-          });
         }
 
         lines.forEach((line, idx) => {
@@ -1332,45 +1367,47 @@
           if (/\bSELECT\s+\*\s+\bFROM\b/i.test(trimmed)) {
             issues.push({
               id: `sql_star_${lineNum}`,
-              file: filename,
+              title: 'Wildcard SELECT * Performance & Schema Hazard',
+              severity: 'Medium',
+              dimension: 'Performance issues',
+              location: `${location} (Line ${lineNum})`,
               language: 'SQL',
               line: lineNum,
-              severity: 'Medium',
-              type: 'Code Smell',
-              title: 'Use of Wildcard SELECT *',
-              description: 'Using SELECT * retrieves unnecessary columns, breaks covering indexes, degrades network transfer, and exposes schema changes.',
               code: trimmed,
-              recommendation: 'Explicitly specify only required column names.',
-              suggestedFix: `SELECT id, name, created_at FROM users WHERE active = 1;`,
-              confidence: 'High'
+              beginner: 'Using SELECT * asks the database to send every column, even ones you do not need, slowing down the system.',
+              technical: 'SELECT * invalidates covering index optimizations, forces unnecessary disk I/O, increases network payload size, and introduces fragility to schema migrations.',
+              advanced: 'Negatively impacts database buffer pools. Unbounded column fetching can also inadvertently expose confidential or large binary columns (BLOB/TEXT).',
+              suggestedFix: `SELECT id, email, created_at FROM users WHERE status = 'ACTIVE';`,
+              whyFixWorks: 'Explicit column projection reduces serialization overhead and allows the query planner to utilize covering indexes.'
             });
           }
 
-          // Rule 2: String concatenation suggesting SQL Injection
+          // Rule 2: SQL Injection via Concatenation
           if (/(?:['"]\s*\+\s*|\+\s*['"]|CONCAT\(|\.\s*['"])/i.test(trimmed) && /\b(?:SELECT|WHERE|INSERT|UPDATE)\b/i.test(trimmed)) {
             issues.push({
               id: `sql_sqli_${lineNum}`,
-              file: filename,
+              title: 'Dynamic SQL Query Formed via String Concatenation',
+              severity: 'Critical',
+              dimension: 'Security risks and unsafe coding practices',
+              location: `${location} (Line ${lineNum})`,
               language: 'SQL',
               line: lineNum,
-              severity: 'High',
-              type: 'Security',
-              title: 'Potential SQL Injection via String Concatenation',
-              description: 'Building dynamic SQL queries via string concatenation allows malicious input strings to modify query syntax.',
               code: trimmed,
-              recommendation: 'Use parameterized queries or prepared statements.',
-              suggestedFix: `-- Use parameterized bind variables instead of concatenation:\nSELECT * FROM accounts WHERE username = ? AND password_hash = ?;`,
-              confidence: 'High'
+              beginner: 'Building database commands by gluing text strings together lets attackers change the command to steal or delete data.',
+              technical: 'Forming dynamic SQL commands by string concatenation allows raw user input to escape quotes and inject arbitrary SQL syntax.',
+              advanced: 'CWE-89: SQL Injection. Can allow authentication bypass, complete database dumping, or administrative remote code execution.',
+              suggestedFix: `-- Parameterized query with bind variables:\nSELECT id, email FROM accounts WHERE username = ? AND status = ?;`,
+              whyFixWorks: 'Parameterized queries separate the query structure from untrusted data parameters at the database protocol level.'
             });
           }
 
-          // Rule 3: Hardcoded credentials
-          const secret = checkHardcodedSecrets(trimmed, lineNum, filename, 'SQL');
+          // Rule 3: Secrets
+          const secret = checkHardcodedSecrets(trimmed, lineNum, location, 'SQL');
           if (secret) issues.push(secret);
 
           // Rule 4: TODO / FIXME
           if (config.includeTodo) {
-            const todo = checkTodoComments(trimmed, lineNum, filename, 'SQL');
+            const todo = checkTodoComments(trimmed, lineNum, location, 'SQL');
             if (todo) issues.push(todo);
           }
         });
@@ -1379,44 +1416,27 @@
       }
     };
 
-    // 3.4 HTML Analyzer
+    // 4.4 HTML Analyzer
     const htmlAnalyzer = {
-      analyze(filename, content, config) {
+      analyze(location, content, config) {
         const issues = [];
         const lines = splitLines(content);
 
-        // Document-level checks
         if (!/<html[^>]*\blang=["'][a-zA-Z\-]+["']/i.test(content)) {
           issues.push({
-            id: `html_lang_${filename}`,
-            file: filename,
-            language: 'HTML',
-            line: 1,
-            severity: 'Medium',
-            type: 'Code Smell',
+            id: `html_lang_${Date.now()}`,
             title: 'Missing lang Attribute on <html> Element',
-            description: 'Screen readers and search engines require the "lang" attribute to set the default voice synthesizer pronunciation and text direction.',
-            code: '<html>',
-            recommendation: 'Declare the primary language on the root element, e.g., <html lang="en">.',
-            suggestedFix: `<html lang="en">`,
-            confidence: 'High'
-          });
-        }
-
-        if (!/<meta[^>]*name=["']viewport["'][^>]*content=/i.test(content)) {
-          issues.push({
-            id: `html_viewport_${filename}`,
-            file: filename,
+            severity: 'Low',
+            dimension: 'Dependency, compatibility, or configuration issues',
+            location: `${location} (Line 1)`,
             language: 'HTML',
             line: 1,
-            severity: 'Medium',
-            type: 'Code Smell',
-            title: 'Missing Responsive Viewport Meta Tag',
-            description: 'Without a viewport meta tag, mobile browsers render pages in desktop zoom fallback mode, ruining responsiveness.',
-            code: '<head>',
-            recommendation: 'Include a standard viewport tag in the <head> block.',
-            suggestedFix: `<meta name="viewport" content="width=device-width, initial-scale=1.0">`,
-            confidence: 'High'
+            code: '<html>',
+            beginner: 'The webpage does not state what language it is written in, which confuses reading tools used by visually impaired people.',
+            technical: 'The root <html> tag lacks a valid "lang" attribute, violating WCAG 2.1 accessibility criteria (Success Criterion 3.1.1).',
+            advanced: 'Assists screen readers in choosing the correct vocal synthesizer dictionary and helps search engines determine page localization.',
+            suggestedFix: `<html lang="en">`,
+            whyFixWorks: 'Declares English as the primary document language for all assistive technologies and web crawlers.'
           });
         }
 
@@ -1424,46 +1444,42 @@
           const lineNum = idx + 1;
           const trimmed = line.trim();
 
-          // Rule 1: <img> without alt
+          // Rule 1: img without alt
           if (/<img\b(?![^>]*\balt=)[^>]*>/i.test(trimmed)) {
             issues.push({
-              id: `html_img_alt_${lineNum}`,
-              file: filename,
+              id: `html_alt_${lineNum}`,
+              title: 'Image Missing alt Accessibility Attribute',
+              severity: 'Medium',
+              dimension: 'Maintainability, readability, naming, duplication, and code-quality issues',
+              location: `${location} (Line ${lineNum})`,
               language: 'HTML',
               line: lineNum,
-              severity: 'Medium',
-              type: 'Code Smell',
-              title: 'Image Tag Missing alt Attribute (Accessibility / a11y)',
-              description: 'Images without alt attributes prevent screen-reader users from understanding visual content and violate WCAG 2.1.',
               code: trimmed,
-              recommendation: 'Add a descriptive alt attribute, or alt="" if purely decorative.',
-              suggestedFix: trimmed.replace(/<img\b/i, '<img alt="Descriptive label" '),
-              confidence: 'High'
+              beginner: 'This picture is missing a text description. People using screen readers will have no idea what the picture shows.',
+              technical: '<img> element lacks an "alt" attribute, preventing screen readers from communicating visual content.',
+              advanced: 'Violates Section 508 and WCAG 2.1 Level A compliance. Non-decorative images must supply an informative alt attribute.',
+              suggestedFix: trimmed.replace(/<img\b/i, '<img alt="Hero promotional banner" '),
+              whyFixWorks: 'Supplies assistive text for visually impaired users while retaining fallback text when images fail to load.'
             });
           }
 
-          // Rule 2: Inline event handlers (onclick, onmouseover)
+          // Rule 2: inline onclick
           if (/\bon\w+\s*=\s*["'][^"']+["']/i.test(trimmed)) {
             issues.push({
-              id: `html_inline_event_${lineNum}`,
-              file: filename,
+              id: `html_inline_${lineNum}`,
+              title: 'Inline Event Handler Violates Content Security Policy',
+              severity: 'Medium',
+              dimension: 'Security risks and unsafe coding practices',
+              location: `${location} (Line ${lineNum})`,
               language: 'HTML',
               line: lineNum,
-              severity: 'Medium',
-              type: 'Security',
-              title: 'Inline JavaScript Event Handler Detected',
-              description: 'Inline event handlers (e.g. onclick) violate Content Security Policy (CSP) best practices and mix presentation with business logic.',
               code: trimmed,
-              recommendation: 'Use unobtrusive JavaScript event listeners with addEventListener().',
-              suggestedFix: `// HTML: <button id="my-btn">Click</button>\n// JS: document.getElementById('my-btn').addEventListener('click', handler);`,
-              confidence: 'High'
+              beginner: 'JavaScript code is embedded directly inside an HTML tag. This makes the code harder to secure.',
+              technical: 'Inline event attributes like onclick require the unsafe-inline CSP directive, enabling script injection exploits.',
+              advanced: 'Enforces separation of concerns and facilitates strict Content Security Policy headers (no unsafe-inline).',
+              suggestedFix: `// HTML: <button id="btn-checkout">Checkout</button>\n// JS: document.getElementById('btn-checkout').addEventListener('click', handler);`,
+              whyFixWorks: 'Extracts event bindings into unobtrusive JavaScript modules protected by strict CSP policies.'
             });
-          }
-
-          // Rule 3: TODO / FIXME
-          if (config.includeTodo) {
-            const todo = checkTodoComments(trimmed, lineNum, filename, 'HTML');
-            if (todo) issues.push(todo);
           }
         });
 
@@ -1471,13 +1487,13 @@
       }
     };
 
-    // 3.5 CSS Analyzer
+    // 4.5 CSS Analyzer
     const cssAnalyzer = {
-      analyze(filename, content, config) {
+      analyze(location, content, config) {
         const issues = [];
         const lines = splitLines(content);
 
-        // Check for duplicate selectors
+        // Check duplicate selectors
         const cleanContent = content.replace(/\/\*[\s\S]*?\*\//g, '');
         const ruleBlocks = cleanContent.match(/([^{}]+)\{([^{}]+)\}/g) || [];
         const seenSelectors = new Map();
@@ -1486,7 +1502,6 @@
           const parts = block.split('{');
           if (parts.length >= 2) {
             const sel = parts[0].trim();
-            // Ignore keyframe steps or media queries
             if (sel && !sel.startsWith('@') && !sel.startsWith('from') && !sel.endsWith('%')) {
               seenSelectors.set(sel, (seenSelectors.get(sel) || 0) + 1);
             }
@@ -1496,18 +1511,19 @@
         seenSelectors.forEach((count, sel) => {
           if (count > 1) {
             issues.push({
-              id: `css_dupe_${encodeURIComponent(sel).slice(0, 20)}`,
-              file: filename,
+              id: `css_dupe_${encodeURIComponent(sel).slice(0, 15)}`,
+              title: `Duplicate CSS Selector Declaration: "${sel}"`,
+              severity: 'Low',
+              dimension: 'Maintainability, readability, naming, duplication, and code-quality issues',
+              location: `${location} (Selector: ${sel})`,
               language: 'CSS',
               line: 1,
-              severity: 'Low',
-              type: 'Code Smell',
-              title: `Duplicate CSS Selector: "${sel}"`,
-              description: `Selector "${sel}" is defined ${count} times in the stylesheet. Duplicate selectors cause unexpected cascades and redundant bytes.`,
               code: `${sel} { ... }`,
-              recommendation: 'Consolidate styles into a single declaration block.',
-              suggestedFix: `/* Consolidate common declarations for ${sel} into one block */`,
-              confidence: 'High'
+              beginner: 'The same CSS styling rule is written multiple times in different places, creating confusion about which styles apply.',
+              technical: `Selector "${sel}" is defined ${count} times across the stylesheet, causing unexpected cascade overrides.`,
+              advanced: 'Bloats stylesheet file size and increases CSSOM recalculation times during browser rendering.',
+              suggestedFix: `/* Consolidate common declarations for ${sel} into a single block */`,
+              whyFixWorks: 'Consolidation reduces CSSOM nodes and establishes a single source of truth for styles.'
             });
           }
         });
@@ -1516,45 +1532,126 @@
           const lineNum = idx + 1;
           const trimmed = line.trim();
 
-          // Rule 1: !important abuse
+          // Rule: !important abuse
           if (/!important\b/i.test(trimmed)) {
             issues.push({
-              id: `css_important_${lineNum}`,
-              file: filename,
+              id: `css_imp_${lineNum}`,
+              title: 'Overuse of !important Override',
+              severity: 'Low',
+              dimension: 'Maintainability, readability, naming, duplication, and code-quality issues',
+              location: `${location} (Line ${lineNum})`,
               language: 'CSS',
               line: lineNum,
-              severity: 'Low',
-              type: 'Code Smell',
-              title: 'Overuse of !important Declaration',
-              description: '!important breaks CSS specificity rules, making future style maintenance and overrides extremely difficult.',
               code: trimmed,
-              recommendation: 'Refactor selector specificity or structure with BEM methodology instead of forcing priority.',
+              beginner: 'Using !important forces a style to win, making future design changes very difficult to apply.',
+              technical: '!important declaration breaks natural CSS specificity hierarchy and forces future developers to use even more !important tags to override it.',
+              advanced: 'Fragile styling architecture. Violates modern design system practices like BEM (Block Element Modifier).',
               suggestedFix: trimmed.replace(/\s*!important/gi, ''),
-              confidence: 'High'
+              whyFixWorks: 'Preserves the natural cascade and allows specific parent containers to override styles cleanly.'
             });
           }
+        });
 
-          // Rule 2: Empty CSS rule sets
-          if (/[^{}]+\{\s*\}/.test(trimmed)) {
-            issues.push({
-              id: `css_empty_${lineNum}`,
-              file: filename,
-              language: 'CSS',
-              line: lineNum,
-              severity: 'Low',
-              type: 'Code Smell',
-              title: 'Empty Rule Set Block',
-              description: 'Empty CSS declaration blocks add pointless overhead to parsed style tree evaluation.',
-              code: trimmed,
-              recommendation: 'Remove empty rules or add intended styling.',
-              suggestedFix: `/* Remove dead empty rule block */`,
-              confidence: 'High'
-            });
+        return issues;
+      }
+    };
+
+    // 4.6 Basic Pattern Analyzer for Java, C#, C, C++
+    const basicPatternAnalyzer = {
+      analyze(location, content, config, language) {
+        const issues = [];
+        const lines = splitLines(content);
+
+        lines.forEach((line, idx) => {
+          const lineNum = idx + 1;
+          const trimmed = line.trim();
+
+          // Secrets check
+          const secret = checkHardcodedSecrets(trimmed, lineNum, location, language);
+          if (secret) issues.push(secret);
+
+          // C/C++ unsafe memory calls
+          if (language === 'C' || language === 'C++') {
+            if (/\bgets\s*\(/.test(trimmed)) {
+              issues.push({
+                id: `c_gets_${lineNum}`,
+                title: 'Critical Buffer Overflow Vulnerability via gets()',
+                severity: 'Critical',
+                dimension: 'Security risks and unsafe coding practices',
+                location: `${location} (Line ${lineNum})`,
+                language: language,
+                line: lineNum,
+                code: trimmed,
+                beginner: 'The gets() command reads user typing without checking if it fits in memory. An attacker can crash the computer or take full control.',
+                technical: 'gets() provides no mechanism to constrain reading bounds, writing beyond array boundaries directly into adjacent call-stack frames.',
+                advanced: 'CWE-120: Classic Buffer Overflow. Entirely removed from the C11 and C++14 standards. Permits instruction pointer hijacking.',
+                suggestedFix: `fgets(buffer, sizeof(buffer), stdin);`,
+                whyFixWorks: 'fgets enforces an explicit maximum capacity check against destination buffer memory.'
+              });
+            }
+
+            if (/\b(strcpy|strcat|sprintf)\s*\(/.test(trimmed)) {
+              const funcMatch = trimmed.match(/\b(strcpy|strcat|sprintf)\b/)[1];
+              issues.push({
+                id: `c_str_${lineNum}`,
+                title: `Unbounded String Buffer Operation: ${funcMatch}()`,
+                severity: 'High',
+                dimension: 'Security risks and unsafe coding practices',
+                location: `${location} (Line ${lineNum})`,
+                language: language,
+                line: lineNum,
+                code: trimmed,
+                beginner: `The ${funcMatch} function copies text without verifying that the destination has enough room, risking crashes and exploits.`,
+                technical: `${funcMatch}() writes byte streams until reaching a null terminator without verifying that destination buffers have sufficient allocated capacity.`,
+                advanced: 'Violates CERT C Secure Coding Rules (STR31-C). Vulnerable to stack smashing and return-oriented programming (ROP) exploits.',
+                suggestedFix: `snprintf(dest, sizeof(dest), "%s", src);`,
+                whyFixWorks: 'snprintf guarantees null termination and never writes more bytes than the specified length buffer.'
+              });
+            }
+
+            if (/\bsystem\s*\(\s*["'](?:pause|cls)/i.test(trimmed)) {
+              issues.push({
+                id: `cpp_sys_${lineNum}`,
+                title: 'Non-Portable Shell Spawn via system()',
+                severity: 'Low',
+                dimension: 'Dependency, compatibility, or configuration issues',
+                location: `${location} (Line ${lineNum})`,
+                language: language,
+                line: lineNum,
+                code: trimmed,
+                beginner: 'Spawning the operating system shell to pause or clear the screen only works on Windows and slows down the program.',
+                technical: 'Calling system() forks an entire operating system shell process (cmd.exe or /bin/sh) just to wait for user input.',
+                advanced: 'Platform-dependent invocation. Can introduce command injection if arguments are dynamically formulated.',
+                suggestedFix: `std::cout << "Press Enter to continue...";\nstd::cin.get();`,
+                whyFixWorks: 'Uses standard cross-platform C++ I/O streams without spawning expensive external child processes.'
+              });
+            }
           }
 
-          // Rule 3: TODO / FIXME
+          // Java / C# swallowed exceptions
+          if (language === 'Java' || language === 'C#') {
+            if (/catch\s*\([^{)]+\)\s*\{\s*\}/.test(trimmed) || /catch\s*\([^{)]+\)\s*\{\s*\/\/[^\n]*\}/.test(trimmed)) {
+              issues.push({
+                id: `jvm_swallow_${lineNum}`,
+                title: 'Silently Swallowed Exception Block',
+                severity: 'High',
+                dimension: 'Poor or missing error handling',
+                location: `${location} (Line ${lineNum})`,
+                language: language,
+                line: lineNum,
+                code: trimmed,
+                beginner: 'This code catches an error and does nothing with it. When things break, the system stays silent and gives no clue about why it failed.',
+                technical: 'Empty catch block suppresses the caught exception object without logging, metrics incrementing, or error recovery dispatch.',
+                advanced: 'Anti-pattern: Exception Swallowing. Causes silent data corruption, leaves database transactions hanging, and makes root-cause analysis in production impossible.',
+                suggestedFix: `catch (Exception ex) {\n    logger.error("Failed executing transaction: ", ex);\n    throw new ServiceException("Operational failure", ex);\n}`,
+                whyFixWorks: 'Preserves the original exception stack trace in the error logs and safely propagates the issue.'
+              });
+            }
+          }
+
+          // TODO comments
           if (config.includeTodo) {
-            const todo = checkTodoComments(trimmed, lineNum, filename, 'CSS');
+            const todo = checkTodoComments(trimmed, lineNum, location, language);
             if (todo) issues.push(todo);
           }
         });
@@ -1563,254 +1660,87 @@
       }
     };
 
-    // 3.6 Basic Pattern Analyzers for Java, C#, C, C++
-    // (Explicitly labeled as Basic pattern analysis)
-    const basicPatternAnalyzer = {
-      analyze(filename, content, config, language) {
-        const issues = [];
-        const lines = splitLines(content);
-
-        lines.forEach((line, idx) => {
-          const lineNum = idx + 1;
-          const trimmed = line.trim();
-
-          // Check 1: Hardcoded credentials
-          const secret = checkHardcodedSecrets(trimmed, lineNum, filename, language);
-          if (secret) {
-            secret.title = `[Pattern Analysis] ${secret.title}`;
-            issues.push(secret);
-          }
-
-          // Check 2: TODO comments
-          if (config.includeTodo) {
-            const todo = checkTodoComments(trimmed, lineNum, filename, language);
-            if (todo) {
-              todo.title = `[Pattern Analysis] ${todo.title}`;
-              issues.push(todo);
-            }
-          }
-
-          // Check 3: C/C++ unsafe legacy buffer manipulation functions
-          if (language === 'C' || language === 'C++') {
-            if (/\bgets\s*\(/.test(trimmed)) {
-              issues.push({
-                id: `c_gets_${lineNum}`,
-                file: filename,
-                language: language,
-                line: lineNum,
-                severity: 'High',
-                type: 'Security',
-                title: '[Basic Pattern Analysis] Critical Buffer Overflow Vulnerability: gets()',
-                description: 'The gets() function has no bounds check mechanism and is deprecated/removed in modern C/C++ standards. It leads directly to buffer overflows.',
-                code: trimmed,
-                recommendation: 'Replace gets() with fgets() specifying max buffer capacity or C++ std::getline.',
-                suggestedFix: `fgets(buffer, sizeof(buffer), stdin);`,
-                confidence: 'High'
-              });
-            }
-
-            if (/\b(strcpy|strcat|sprintf)\s*\(/.test(trimmed)) {
-              const funcMatch = trimmed.match(/\b(strcpy|strcat|sprintf)\b/)[1];
-              issues.push({
-                id: `c_str_${lineNum}`,
-                file: filename,
-                language: language,
-                line: lineNum,
-                severity: 'High',
-                type: 'Security',
-                title: `[Basic Pattern Analysis] Unbounded Memory Operation: ${funcMatch}()`,
-                description: `${funcMatch}() writes to destination buffers without verifying bounds, causing stack smashing and security exploits.`,
-                code: trimmed,
-                recommendation: `Use safe bounded variants like strncpy(), snprintf(), strncat() or std::string.`,
-                suggestedFix: `snprintf(dest, sizeof(dest), "%s", src);`,
-                confidence: 'High'
-              });
-            }
-
-            if (/\bscanf\s*\(\s*["'][^"']*%s[^"']*["']/.test(trimmed)) {
-              issues.push({
-                id: `c_scanf_${lineNum}`,
-                file: filename,
-                language: language,
-                line: lineNum,
-                severity: 'Medium',
-                type: 'Security',
-                title: '[Basic Pattern Analysis] scanf() without Field Width Limit',
-                description: 'Using %s in scanf without specifying max width will overflow destination character arrays if input exceeds size.',
-                code: trimmed,
-                recommendation: 'Specify width limits in the format specifier, e.g. "%63s" for a 64-char buffer.',
-                suggestedFix: `scanf("%63s", buffer); // Enforces 63 character limit + null terminator`,
-                confidence: 'Medium'
-              });
-            }
-
-            if (/\bsystem\s*\(\s*["'](?:pause|cls|dir)/i.test(trimmed)) {
-              issues.push({
-                id: `cpp_system_pause_${lineNum}`,
-                file: filename,
-                language: language,
-                line: lineNum,
-                severity: 'Low',
-                type: 'Code Smell',
-                title: '[Basic Pattern Analysis] Non-Portable system("pause") Shell Command',
-                description: 'Spawning an operating system shell via system() causes platform dependency and high process overhead.',
-                code: trimmed,
-                recommendation: 'Use portable standard input waits, such as std::cin.get().',
-                suggestedFix: `std::cout << "Press Enter to continue...";\nstd::cin.get();`,
-                confidence: 'High'
-              });
-            } else if (/\bsystem\s*\(/.test(trimmed)) {
-              issues.push({
-                id: `c_system_${lineNum}`,
-                file: filename,
-                language: language,
-                line: lineNum,
-                severity: 'High',
-                type: 'Security',
-                title: '[Basic Pattern Analysis] Command Injection Risk with system()',
-                description: 'Invoking system shells with dynamically formulated arguments can permit OS command injection.',
-                code: trimmed,
-                recommendation: 'Use platform-specific process execution APIs (e.g. execve or fork/exec) without shell interpolation.',
-                suggestedFix: `// Avoid shell expansion; execute binaries directly with explicit argument arrays`,
-                confidence: 'Medium'
-              });
-            }
-          }
-
-          // Check 4: Java & C# swallowed catch blocks
-          if (language === 'Java' || language === 'C#') {
-            if (/catch\s*\([^{)]+\)\s*\{\s*\}/.test(trimmed) || /catch\s*\([^{)]+\)\s*\{\s*\/\/[^\n]*\}/.test(trimmed)) {
-              issues.push({
-                id: `jvm_catch_empty_${lineNum}`,
-                file: filename,
-                language: language,
-                line: lineNum,
-                severity: 'Medium',
-                type: 'Bug / Error',
-                title: '[Basic Pattern Analysis] Silently Swallowed Exception',
-                description: 'Empty catch block suppresses exceptions without logging or recovery, concealing fatal root causes.',
-                code: trimmed,
-                recommendation: 'Log the exception with stack trace or rethrow encapsulated within a domain error.',
-                suggestedFix: `catch (Exception ex) {\n    logger.error("Failed executing task", ex);\n    throw new ServiceException("Processing error", ex);\n}`,
-                confidence: 'High'
-              });
-            }
-
-            // Command execution heuristics
-            if (/Runtime\.getRuntime\(\)\.exec\(|Process\.Start\(/.test(trimmed)) {
-              issues.push({
-                id: `jvm_exec_${lineNum}`,
-                file: filename,
-                language: language,
-                line: lineNum,
-                severity: 'High',
-                type: 'Security',
-                title: `[Basic Pattern Analysis] External Process Spawning in ${language}`,
-                description: 'Spawning external processes using Runtime.exec or Process.Start can expose command injection vulnerabilities.',
-                code: trimmed,
-                recommendation: 'Sanitize arguments and use structured process builder APIs with validated whitelists.',
-                suggestedFix: `ProcessBuilder pb = new ProcessBuilder("safe_bin", safeArg);\npb.start();`,
-                confidence: 'Medium'
-              });
-            }
-          }
-
-          // Check 5: Long lines
-          if (config.includeLow && line.length > 130) {
-            issues.push({
-              id: `${language.toLowerCase()}_long_${lineNum}`,
-              file: filename,
-              language: language,
-              line: lineNum,
-              severity: 'Low',
-              type: 'Code Smell',
-              title: '[Basic Pattern Analysis] Long Line Length (>130)',
-              description: `Line length of ${line.length} exceeds standard readable column width.`,
-              code: line.substring(0, 90) + '...',
-              recommendation: 'Refactor across multiple lines.',
-              suggestedFix: '// Break statement into logical blocks',
-              confidence: 'Review required'
-            });
-          }
-        });
-
-        return issues;
-      }
-    };
-
-    // --- 4. MASTER ANALYSIS DISPATCHER ---
+    // --- 5. MASTER ANALYSIS ENGINE (DUAL-CONTEXT DISPATCHER) ---
     const analysisEngine = {
-      runOnFile(fileObj) {
-        const lang = fileObj.language;
+      runDualAnalysis() {
+        const findings = [];
         const config = state.settings;
-        let findings = [];
 
-        try {
-          switch (lang) {
-            case 'Python':
-              findings = pythonAnalyzer.analyze(fileObj.name, fileObj.content, config);
-              break;
-            case 'JavaScript':
-              findings = javascriptAnalyzer.analyze(fileObj.name, fileObj.content, config);
-              break;
-            case 'SQL':
-              findings = sqlAnalyzer.analyze(fileObj.name, fileObj.content, config);
-              break;
-            case 'HTML':
-              findings = htmlAnalyzer.analyze(fileObj.name, fileObj.content, config);
-              break;
-            case 'CSS':
-              findings = cssAnalyzer.analyze(fileObj.name, fileObj.content, config);
-              break;
-            case 'Java':
-            case 'C#':
-            case 'C':
-            case 'C++':
-              findings = basicPatternAnalyzer.analyze(fileObj.name, fileObj.content, config, lang);
-              break;
-            default:
-              findings = [];
-          }
-        } catch (err) {
-          console.error(`Analysis error in ${fileObj.name}:`, err);
+        // TARGET 1: Pasted Code Snippet (Primary Review Target)
+        if (state.pastedCode && state.pastedCode.trim().length > 0) {
+          const lang = state.pastedLang === 'auto' 
+            ? languageDetector.detect('pasted_code_snippet', state.pastedCode)
+            : state.pastedLang;
+
+          const pastedFindings = this.runSingleTarget('Pasted Code Snippet (Primary Target)', state.pastedCode, lang, config);
+          findings.push(...pastedFindings);
         }
+
+        // TARGET 2: Project Files (Contextual Grounding)
+        state.stagedFiles.forEach(fileObj => {
+          const fileFindings = this.runSingleTarget(fileObj.name, fileObj.content, fileObj.language, config);
+          findings.push(...fileFindings);
+        });
 
         return findings;
       },
 
-      calculateHealthScore(filesCount, issues) {
-        if (filesCount === 0) return 100;
+      runSingleTarget(targetName, content, language, config) {
+        try {
+          switch (language) {
+            case 'Python':
+              return pythonAnalyzer.analyze(targetName, content, config);
+            case 'JavaScript':
+              return javascriptAnalyzer.analyze(targetName, content, config);
+            case 'SQL':
+              return sqlAnalyzer.analyze(targetName, content, config);
+            case 'HTML':
+              return htmlAnalyzer.analyze(targetName, content, config);
+            case 'CSS':
+              return cssAnalyzer.analyze(targetName, content, config);
+            case 'Java':
+            case 'C#':
+            case 'C':
+            case 'C++':
+              return basicPatternAnalyzer.analyze(targetName, content, config, language);
+            default:
+              return [];
+          }
+        } catch (e) {
+          console.error(`Error analyzing ${targetName}:`, e);
+          return [];
+        }
+      },
+
+      calculateHealthScore(targetsCount, issues) {
+        if (targetsCount === 0) return 100;
         let penalty = 0;
         issues.forEach(iss => {
-          if (iss.severity === 'High') penalty += 18;
-          else if (iss.severity === 'Medium') penalty += 6;
-          else if (iss.severity === 'Low') penalty += 2;
+          if (iss.severity === 'Critical') penalty += 25;
+          else if (iss.severity === 'High') penalty += 18;
+          else if (iss.severity === 'Medium') penalty += 8;
+          else if (iss.severity === 'Low') penalty += 3;
         });
 
-        // Normalize across file count
-        const normalizedPenalty = penalty / Math.max(1, Math.sqrt(filesCount));
+        const normalizedPenalty = penalty / Math.max(1, Math.sqrt(targetsCount));
         const rawScore = 100 - normalizedPenalty;
         return Math.max(0, Math.min(100, Math.round(rawScore)));
       }
     };
 
-    // --- 5. ZIP PARSER MODULE (100% Client-side, no dependencies) ---
-    // Reads uncompressed or raw Deflate ZIP headers directly in browser memory
+    // --- 6. ZIP PARSER MODULE (Client-Side) ---
     const zipReader = {
       async readZip(file) {
         const arrayBuffer = await file.arrayBuffer();
         const view = new DataView(arrayBuffer);
         const files = [];
 
-        // Simple PKZIP directory walking
         let offset = 0;
         const totalLen = view.byteLength;
 
         while (offset + 30 < totalLen) {
           const sig = view.getUint32(offset, true);
-          if (sig !== 0x04034b50) { // Local file header signature
-            break;
-          }
+          if (sig !== 0x04034b50) break;
 
           const compression = view.getUint16(offset + 8, true);
           const compSize = view.getUint32(offset + 18, true);
@@ -1822,16 +1752,13 @@
           const filename = new TextDecoder('utf-8').decode(fnameBytes);
           const dataOffset = offset + 30 + fnameLen + extraLen;
 
-          // Process file if it has size and is not a folder
           if (!filename.endsWith('/') && compSize > 0) {
             const rawBytes = new Uint8Array(arrayBuffer, dataOffset, compSize);
             let contentText = null;
 
             if (compression === 0) {
-              // Stored (no compression)
               contentText = new TextDecoder('utf-8').decode(rawBytes);
             } else if (compression === 8 && typeof DecompressionStream !== 'undefined') {
-              // Deflate compression supported by modern browser native DecompressionStream
               try {
                 const ds = new DecompressionStream('deflate-raw');
                 const writer = ds.writable.getWriter();
@@ -1840,13 +1767,13 @@
                 const decompressed = await new Response(ds.readable).arrayBuffer();
                 contentText = new TextDecoder('utf-8').decode(decompressed);
               } catch (e) {
-                console.warn(`Could not decompress ${filename} natively:`, e);
+                console.warn(`Could not decompress ${filename}:`, e);
               }
             }
 
             if (contentText !== null) {
               files.push({
-                name: filename.split('/').pop(), // Basename
+                name: filename.split('/').pop(),
                 content: contentText,
                 size: uncompSize || compSize
               });
@@ -1860,22 +1787,22 @@
       }
     };
 
-    // --- 6. BUILT-IN SAMPLE PROJECT GENERATOR ---
+    // --- 7. BUILT-IN SAMPLE DEMO PROJECT ---
     const sampleProject = {
       getSampleFiles() {
         return [
           {
             name: 'sample.py',
-            content: `# Production User Authentication Module
+            content: `# Production Authentication Gateway
 import sys
 
-# TODO: Replace dummy test credentials before final staging deploy!
+# TODO: Migrate hardcoded master secret to AWS Key Management Service (KMS)
 DATABASE_ADMIN_SECRET = "sk_live_9384729384729384_prod"
 
 def authenticate_user(payload_string):
     print("DEBUG: Authenticating raw payload...")
     try:
-        # Dynamic evaluation of user payload
+        # Dangerous dynamic evaluation of client payload
         user_obj = eval(payload_string)
         return user_obj
     except:
@@ -1883,7 +1810,7 @@ def authenticate_user(payload_string):
         return None
 
 def calculate_metrics():
-    # Intentionally excessive line length to demonstrate PEP 8 formatting violation detection in multi-language analyzer
+    # Long line PEP 8 violation
     total_aggregate = 100 + 200 + 300 + 400 + 500 + 600 + 700 + 800 + 900 + 1000 + 1100 + 1200 + 1300 + 1400 + 1500
     return total_aggregate
 `
@@ -1894,7 +1821,7 @@ def calculate_metrics():
 var activeToken = "bearer_secret_token_129482019482";
 
 function renderUserProfile(container, userData) {
-  // TODO: Implement DOMPurify sanitization before release
+  // TODO: Implement DOMPurify sanitization
   console.log("Rendering user profile", userData);
   
   // Vulnerable to DOM-based XSS
@@ -1911,18 +1838,18 @@ function renderUserProfile(container, userData) {
           },
           {
             name: 'sample.sql',
-            content: `-- Database Seed and Migration Script
+            content: `-- Database Migration & Seeding Script
 -- TODO: Add foreign key constraints on customer accounts
 
 SELECT * FROM users;
 
--- Vulnerable concatenation
+-- Vulnerable concatenation (SQLi)
 SELECT id, email FROM accounts WHERE username = 'admin' + '' AND status = 'ACTIVE';
 
--- Dangerous update without WHERE
+-- Catastrophic update missing WHERE
 UPDATE users SET is_verified = 1;
 
--- Hardcoded master credential
+-- Hardcoded master secret
 INSERT INTO api_keys (client, secret) VALUES ('analytics_worker', 'prod_db_secret_key_84920');
 `
           },
@@ -1931,11 +1858,11 @@ INSERT INTO api_keys (client, secret) VALUES ('analytics_worker', 'prod_db_secre
             content: `<!DOCTYPE html>
 <html>
 <head>
-  <title>Storefront Portal</title>
+  <title>Enterprise Portal</title>
   <!-- TODO: Link Google web fonts -->
 </head>
 <body>
-  <h1>Welcome to Enterprise Store</h1>
+  <h1>Welcome to Storefront</h1>
   <!-- Missing alt attribute -->
   <img src="/static/hero-banner.jpg">
   
@@ -1959,10 +1886,6 @@ INSERT INTO api_keys (client, secret) VALUES ('analytics_worker', 'prod_db_secre
 .btn-primary {
   font-weight: 700;
 }
-
-/* Empty rule set */
-.card-header-spacer {
-}
 `
           },
           {
@@ -1970,7 +1893,6 @@ INSERT INTO api_keys (client, secret) VALUES ('analytics_worker', 'prod_db_secre
             content: `package com.demo.service;
 
 public class PaymentService {
-    // Basic pattern analysis will inspect this file
     // TODO: Connect to live payment gateway webhook
     private String stripeApiKey = "sk_live_java_secret_0918237";
 
@@ -1992,8 +1914,6 @@ public class PaymentService {
 #include <string.h>
 #include <stdlib.h>
 
-// TODO: Refactor memory model to dynamic buffers
-
 void handle_packet(char *user_data) {
     char local_buf[64];
     // Dangerous unbounded memory operation
@@ -2004,44 +1924,6 @@ void handle_packet(char *user_data) {
     
     // Unsafe system call
     system("pause");
-}
-`
-          },
-          {
-            name: 'sample.cpp',
-            content: `// Engine Core Runtime
-#include <iostream>
-#include <cstdlib>
-
-// TODO: Replace with modern std::jthread in C++20
-
-int main() {
-    char name[32];
-    // scanf without width check
-    scanf("%s", name);
-    system("cls");
-    return 0;
-}
-`
-          },
-          {
-            name: 'sample.cs',
-            content: `using System;
-using System.Diagnostics;
-
-namespace DemoApp {
-    public class OrderProcessor {
-        // TODO: Refactor retry policies
-        private string MasterApiSecret = "secret_cs_9482038472";
-
-        public void DispatchOrder(string orderId) {
-            try {
-                Process.Start("cmd.exe", "/c print " + orderId);
-            } catch (Exception) {
-                // Empty swallowed catch block
-            }
-        }
-    }
 }
 `
           }
@@ -2057,66 +1939,19 @@ namespace DemoApp {
           language: languageDetector.detect(f.name, f.content)
         }));
 
-        uploadUI.renderStagedFiles();
-        router.navigate('upload');
-        ui.showFlash('Loaded 9 comprehensive multi-language demo files into workspace.', 'success');
-      }
-    };
+        // Populate pasted code area with an immediate target example
+        state.pastedCode = `// Direct pasted snippet for primary review\nfunction handleIncomingMessage(userMessage) {\n  // TODO: Add input rate limiting\n  const secretAuthKey = "live_secret_client_token_88491";\n  document.getElementById("output").innerHTML = userMessage.text;\n  eval(userMessage.dynamicCode);\n}`;
+        document.getElementById('pasted-code-input').value = state.pastedCode;
+        workspaceUI.updatePastedStats();
 
-    // --- 7. ROUTER AND NAVIGATION CONTROLLER ---
-    const router = {
-      views: ['dashboard', 'upload', 'issues', 'reports', 'languages', 'settings', 'about'],
-
-      navigate(viewId) {
-        if (!this.views.includes(viewId)) viewId = 'dashboard';
-        state.currentView = viewId;
-
-        // Hide all views
-        this.views.forEach(v => {
-          const el = document.getElementById(`view-${v}`);
-          if (el) el.classList.add('hidden');
-        });
-
-        // Show target view
-        const target = document.getElementById(`view-${viewId}`);
-        if (target) target.classList.remove('hidden');
-
-        // Update Nav button states
-        document.querySelectorAll('.nav-item').forEach(btn => {
-          const navTarget = btn.getAttribute('data-nav');
-          if (navTarget === viewId) {
-            btn.className = 'nav-item w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition text-emerald-400 bg-emerald-950/40 border border-emerald-800/40';
-          } else {
-            btn.className = 'nav-item w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition text-slate-400 hover:text-slate-100 hover:bg-slate-800/60';
-          }
-        });
-
-        // Update Top Bar titles
-        const titles = {
-          dashboard: ['Dashboard', 'Code Health & High-Level Metrics'],
-          upload: ['Upload & Workspace', 'Ingest Multi-Language Source Code & ZIPs'],
-          issues: ['Issues & Findings', 'Filterable Inspection & Remediation'],
-          reports: ['Audit Reports', 'Comprehensive Code Summary & Export'],
-          languages: ['Supported Languages', 'Architecture & Analyzer Matrix'],
-          settings: ['Configuration', 'Analysis Rules & Local Storage Settings'],
-          about: ['Project Overview', 'Academic Architecture & Demonstration']
-        };
-
-        if (titles[viewId]) {
-          document.getElementById('page-title').textContent = titles[viewId][0];
-          document.getElementById('page-subtitle').textContent = titles[viewId][1];
-        }
-
-        // Trigger view-specific re-renders
-        if (viewId === 'dashboard') dashboardUI.update();
-        if (viewId === 'issues') issuesUI.render();
-        if (viewId === 'reports') reportsUI.render();
+        workspaceUI.renderStagedFiles();
+        router.navigate('workspace');
+        ui.showFlash('Loaded sample project files + active pasted review snippet.', 'success');
       }
     };
 
     // --- 8. UI CONTROLLERS & VIEWS ---
 
-    // 8.1 Common UI Utilities
     const ui = {
       showFlash(message, type = 'info') {
         const banner = document.getElementById('flash-banner');
@@ -2134,9 +1969,7 @@ namespace DemoApp {
         `;
         banner.classList.remove('hidden');
 
-        setTimeout(() => {
-          banner.classList.add('hidden');
-        }, 6000);
+        setTimeout(() => banner.classList.add('hidden'), 6000);
       },
 
       escapeHtml(str) {
@@ -2150,33 +1983,33 @@ namespace DemoApp {
       }
     };
 
-    // 8.2 Dashboard UI
+    // 8.1 Dashboard UI
     const dashboardUI = {
       update() {
-        const filesCount = state.stagedFiles.length;
+        const hasPasted = state.pastedCode.trim().length > 0;
+        const totalTargets = state.stagedFiles.length + (hasPasted ? 1 : 0);
         const issues = state.currentIssues;
         const totalIssues = issues.length;
 
-        const highCount = issues.filter(i => i.severity === 'High').length;
+        const highCount = issues.filter(i => i.severity === 'Critical' || i.severity === 'High').length;
         const medCount = issues.filter(i => i.severity === 'Medium').length;
-        const lowCount = issues.filter(i => i.severity === 'Low').length;
+        const lowCount = issues.filter(i => i.severity === 'Low' || i.severity === 'Informational').length;
 
-        const health = analysisEngine.calculateHealthScore(filesCount, issues);
+        const health = analysisEngine.calculateHealthScore(totalTargets, issues);
 
         // Update KPIs
-        document.getElementById('kpi-files-count').textContent = filesCount;
+        document.getElementById('kpi-files-count').textContent = totalTargets;
         document.getElementById('kpi-issues-count').textContent = totalIssues;
         document.getElementById('kpi-high-count').textContent = highCount;
-        document.getElementById('kpi-health-score').textContent = filesCount > 0 ? health : '--';
-        document.getElementById('kpi-health-bar').style.width = filesCount > 0 ? `${health}%` : '0%';
+        document.getElementById('kpi-health-score').textContent = totalTargets > 0 ? health : '--';
+        document.getElementById('kpi-health-bar').style.width = totalTargets > 0 ? `${health}%` : '0%';
 
-        // KPI styling based on health
         const bar = document.getElementById('kpi-health-bar');
         const ratingPill = document.getElementById('health-rating-pill');
         if (health >= 80) {
           bar.className = 'h-full bg-emerald-500 transition-all duration-500';
           ratingPill.className = 'px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-500/20 text-emerald-400';
-          ratingPill.textContent = 'Excellent / Healthy';
+          ratingPill.textContent = 'Healthy Codebase';
         } else if (health >= 50) {
           bar.className = 'h-full bg-amber-500 transition-all duration-500';
           ratingPill.className = 'px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-500/20 text-amber-400';
@@ -2184,13 +2017,12 @@ namespace DemoApp {
         } else {
           bar.className = 'h-full bg-rose-500 transition-all duration-500';
           ratingPill.className = 'px-2 py-0.5 rounded text-[11px] font-semibold bg-rose-500/20 text-rose-400';
-          ratingPill.textContent = 'High Vulnerability Risk';
+          ratingPill.textContent = 'Critical Vulnerability Risks';
         }
 
-        // Subtext
         document.getElementById('kpi-issues-sub').textContent = `${highCount} critical, ${medCount} warnings`;
 
-        // Severity Breakdown counts & progress
+        // Severity Breakdown
         document.getElementById('count-high').textContent = highCount;
         document.getElementById('count-medium').textContent = medCount;
         document.getElementById('count-low').textContent = lowCount;
@@ -2200,11 +2032,10 @@ namespace DemoApp {
         document.getElementById('bar-medium').style.width = `${(medCount / total) * 100}%`;
         document.getElementById('bar-low').style.width = `${(lowCount / total) * 100}%`;
 
-        // Issues by Language distribution
         this.renderLanguageBreakdown();
         this.renderHistory();
 
-        // Update nav badge
+        // Nav badge
         const badge = document.getElementById('nav-issue-badge');
         if (totalIssues > 0) {
           badge.textContent = totalIssues;
@@ -2216,20 +2047,15 @@ namespace DemoApp {
 
       renderLanguageBreakdown() {
         const container = document.getElementById('chart-languages');
-        if (state.stagedFiles.length === 0) {
-          container.innerHTML = `<div class="text-center py-10 text-slate-500 text-xs">No active analysis data. Click "Load Sample Project" or upload files to view distribution.</div>`;
+        const hasPasted = state.pastedCode.trim().length > 0;
+        if (state.stagedFiles.length === 0 && !hasPasted) {
+          container.innerHTML = `<div class="text-center py-10 text-slate-500 text-xs">No active analysis data. Click "Load Demo Project" or paste code to view distribution.</div>`;
           return;
         }
 
-        // Aggregate by language
         const langMap = {};
         state.currentIssues.forEach(i => {
           langMap[i.language] = (langMap[i.language] || 0) + 1;
-        });
-
-        // Also add staged languages that had 0 issues
-        state.stagedFiles.forEach(f => {
-          if (!langMap[f.language]) langMap[f.language] = 0;
         });
 
         let html = '';
@@ -2267,7 +2093,7 @@ namespace DemoApp {
           html += `
             <div class="py-2.5 flex items-center justify-between text-xs">
               <div>
-                <span class="font-medium text-slate-200 block">${item.filesCount} file(s) evaluated</span>
+                <span class="font-medium text-slate-200 block">${item.targetsCount} target(s) evaluated</span>
                 <span class="text-[11px] text-slate-500 font-mono">${dateStr}</span>
               </div>
               <div class="flex items-center space-x-3 font-mono">
@@ -2283,8 +2109,8 @@ namespace DemoApp {
       }
     };
 
-    // 8.3 Upload & Workspace UI
-    const uploadUI = {
+    // 8.2 Workspace UI (Dual Ingestion)
+    const workspaceUI = {
       init() {
         const dropZone = document.getElementById('drop-zone');
         const fileInput = document.getElementById('file-input');
@@ -2316,53 +2142,72 @@ namespace DemoApp {
         });
       },
 
+      onPastedCodeInput() {
+        state.pastedCode = document.getElementById('pasted-code-input').value;
+        this.updatePastedStats();
+      },
+
+      onPastedLangChange() {
+        state.pastedLang = document.getElementById('pasted-lang-select').value;
+        this.updatePastedStats();
+      },
+
+      updatePastedStats() {
+        const code = state.pastedCode;
+        const lines = code ? code.split(/\r?\n/).length : 0;
+        const bytes = new Blob([code]).size;
+        document.getElementById('pasted-stats').textContent = `${lines} lines | ${bytes} bytes`;
+
+        const detected = languageDetector.detect('pasted_code_snippet', code);
+        const badge = document.getElementById('pasted-lang-detected-badge');
+        if (state.pastedLang === 'auto') {
+          badge.textContent = `Auto: ${detected}`;
+        } else {
+          badge.textContent = `Forced: ${state.pastedLang}`;
+        }
+      },
+
+      clearPastedCode() {
+        state.pastedCode = '';
+        document.getElementById('pasted-code-input').value = '';
+        this.updatePastedStats();
+        ui.showFlash('Pasted snippet cleared.', 'info');
+      },
+
       async handleIncomingFiles(fileList) {
-        const MAX_SIZE = 1024 * 1024; // 1MB limit
+        const MAX_SIZE = 1024 * 1024; // 1 MB limit
         let addedCount = 0;
-        let skippedCount = 0;
 
         for (const file of Array.from(fileList)) {
           if (file.size > MAX_SIZE) {
             ui.showFlash(`Skipped "${file.name}": exceeds 1 MB limit.`, 'error');
-            skippedCount++;
             continue;
           }
 
-          // Check if ZIP archive
           if (file.name.toLowerCase().endsWith('.zip')) {
             try {
-              ui.showFlash(`Extracting client-side ZIP archive: ${file.name}...`, 'info');
+              ui.showFlash(`Extracting client-side ZIP: ${file.name}...`, 'info');
               const extracted = await zipReader.readZip(file);
               extracted.forEach(item => {
                 const detectedLang = languageDetector.detect(item.name, item.content);
-                if (detectedLang !== 'Unsupported') {
-                  state.stagedFiles.push({
-                    name: item.name,
-                    content: item.content,
-                    size: item.size,
-                    language: detectedLang
-                  });
-                  addedCount++;
-                } else {
-                  skippedCount++;
-                }
+                state.stagedFiles.push({
+                  name: item.name,
+                  content: item.content,
+                  size: item.size,
+                  language: detectedLang
+                });
+                addedCount++;
               });
             } catch (err) {
               console.error('ZIP extraction failed:', err);
-              ui.showFlash(`Could not unpack ${file.name}. Ensure it is a valid zip.`, 'error');
+              ui.showFlash(`Failed to read ${file.name}.`, 'error');
             }
             continue;
           }
 
-          // Individual text source file
           try {
             const content = await file.text();
             const detectedLang = languageDetector.detect(file.name, content);
-            if (detectedLang === 'Unsupported') {
-              skippedCount++;
-              continue;
-            }
-
             state.stagedFiles.push({
               name: file.name,
               content: content,
@@ -2372,15 +2217,12 @@ namespace DemoApp {
             addedCount++;
           } catch (err) {
             console.error('Error reading file:', err);
-            skippedCount++;
           }
         }
 
         this.renderStagedFiles();
         if (addedCount > 0) {
-          ui.showFlash(`Staged ${addedCount} source file(s) successfully.${skippedCount > 0 ? ` Skipped ${skippedCount} unsupported or oversized file(s).` : ''}`, 'success');
-        } else if (skippedCount > 0) {
-          ui.showFlash(`No supported code files found in selected items.`, 'error');
+          ui.showFlash(`Staged ${addedCount} file(s) into workspace.`, 'success');
         }
       },
 
@@ -2393,8 +2235,8 @@ namespace DemoApp {
 
         if (state.stagedFiles.length === 0) {
           container.innerHTML = `
-            <div class="p-4 bg-slate-900/40 rounded-lg border border-slate-800/80 text-center text-xs text-slate-500">
-              No files selected yet. Drag & drop or use "Load Sample Project" to populate test cases.
+            <div class="p-3 bg-slate-900/40 rounded-lg border border-slate-800/80 text-center text-xs text-slate-500">
+              No files staged. Load demo project or drop in files.
             </div>
           `;
           clearBtn.classList.add('hidden');
@@ -2406,19 +2248,18 @@ namespace DemoApp {
         let html = '';
         state.stagedFiles.forEach((f, idx) => {
           const kb = (f.size / 1024).toFixed(1);
-          const isBasicPattern = ['Java', 'C#', 'C', 'C++'].includes(f.language);
           html += `
-            <div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/70 border border-slate-800 text-xs">
-              <div class="flex items-center space-x-3 overflow-hidden">
+            <div class="flex items-center justify-between p-2 rounded-lg bg-slate-900/70 border border-slate-800 text-xs">
+              <div class="flex items-center space-x-2.5 overflow-hidden">
                 <span class="p-1 rounded bg-slate-800 text-slate-300 font-mono text-[10px]">${idx + 1}</span>
                 <div class="truncate">
                   <span class="font-mono text-slate-200 font-medium">${ui.escapeHtml(f.name)}</span>
-                  <span class="text-slate-500 text-[11px] ml-2 font-mono">${kb} KB</span>
+                  <span class="text-slate-500 text-[10px] ml-1.5 font-mono">${kb} KB</span>
                 </div>
               </div>
               <div class="flex items-center space-x-2 flex-shrink-0">
-                <span class="px-2 py-0.5 rounded text-[10px] font-mono ${isBasicPattern ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'}">
-                  ${f.language} ${isBasicPattern ? '(Pattern)' : ''}
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-300 border border-slate-700">
+                  ${f.language}
                 </span>
                 <button onclick="app.removeStagedFile(${idx})" class="text-slate-500 hover:text-rose-400 p-1">
                   &times;
@@ -2431,7 +2272,7 @@ namespace DemoApp {
       }
     };
 
-    // 8.4 Issues View & AI Remediation Inspector
+    // 8.3 Issues UI & 3-Level Modal Inspector
     const issuesUI = {
       render() {
         this.populateLanguageDropdown();
@@ -2456,15 +2297,15 @@ namespace DemoApp {
         const search = document.getElementById('filter-search').value.toLowerCase().trim();
         const severity = document.getElementById('filter-severity').value;
         const language = document.getElementById('filter-language').value;
-        const type = document.getElementById('filter-type').value;
+        const dimension = document.getElementById('filter-dimension').value;
         const sort = document.getElementById('sort-order').value;
 
         let filtered = state.currentIssues.filter(item => {
           if (severity !== 'ALL' && item.severity !== severity) return false;
           if (language !== 'ALL' && item.language !== language) return false;
-          if (type !== 'ALL' && item.type !== type) return false;
+          if (dimension !== 'ALL' && item.dimension !== dimension) return false;
           if (search) {
-            const haystack = `${item.title} ${item.file} ${item.code} ${item.description} ${item.recommendation}`.toLowerCase();
+            const haystack = `${item.title} ${item.location} ${item.code} ${item.beginner} ${item.technical} ${item.advanced}`.toLowerCase();
             if (!haystack.includes(search)) return false;
           }
           return true;
@@ -2473,11 +2314,11 @@ namespace DemoApp {
         // Sorting
         filtered.sort((a, b) => {
           if (sort === 'severity') {
-            const weights = { High: 3, Medium: 2, Low: 1 };
+            const weights = { Critical: 4, High: 3, Medium: 2, Low: 1, Informational: 0 };
             return weights[b.severity] - weights[a.severity];
           }
-          if (sort === 'file') return a.file.localeCompare(b.file);
-          if (sort === 'line') return a.line - b.line;
+          if (sort === 'file') return a.location.localeCompare(b.location);
+          if (sort === 'line') return (a.line || 0) - (b.line || 0);
           return 0;
         });
 
@@ -2489,7 +2330,7 @@ namespace DemoApp {
           tbody.innerHTML = `
             <tr>
               <td colspan="5" class="py-12 text-center text-slate-500">
-                ${state.currentIssues.length === 0 ? 'No issues recorded yet. Upload code files or load demo project.' : 'No findings match the current filter selection.'}
+                ${state.currentIssues.length === 0 ? 'No findings recorded yet. Run analysis on code in the workspace.' : 'No findings match the current filter selection.'}
               </td>
             </tr>
           `;
@@ -2498,7 +2339,7 @@ namespace DemoApp {
 
         let html = '';
         filtered.forEach((issue) => {
-          const badgeClass = issue.severity === 'High' ? 'badge-high' : (issue.severity === 'Medium' ? 'badge-medium' : 'badge-low');
+          const badgeClass = issue.severity === 'Critical' ? 'badge-critical' : (issue.severity === 'High' ? 'badge-high' : (issue.severity === 'Medium' ? 'badge-medium' : 'badge-low'));
           html += `
             <tr class="hover:bg-slate-800/40 transition">
               <td class="py-3 px-4">
@@ -2510,18 +2351,17 @@ namespace DemoApp {
                 ${ui.escapeHtml(issue.language)}
               </td>
               <td class="py-3 px-4 font-mono text-[11px]">
-                <div class="text-slate-200 truncate max-w-[140px]" title="${ui.escapeHtml(issue.file)}">${ui.escapeHtml(issue.file)}</div>
-                <div class="text-slate-500">Line ${issue.line}</div>
+                <div class="text-slate-200 truncate max-w-[200px]" title="${ui.escapeHtml(issue.location)}">${ui.escapeHtml(issue.location)}</div>
               </td>
               <td class="py-3 px-4">
                 <div class="font-medium text-slate-200">${ui.escapeHtml(issue.title)}</div>
-                <div class="text-slate-400 text-[11px] line-clamp-1 mt-0.5 font-mono text-slate-400 bg-slate-900/60 px-1.5 py-0.5 rounded">
+                <div class="text-slate-400 text-[11px] line-clamp-1 mt-0.5 font-mono bg-slate-900/60 px-1.5 py-0.5 rounded">
                   ${ui.escapeHtml(issue.code)}
                 </div>
               </td>
               <td class="py-3 px-4 text-right">
                 <button onclick="issuesUI.inspectIssue('${issue.id}')" class="px-2.5 py-1 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/30 rounded text-xs font-medium transition">
-                  Inspect & Fix
+                  3-Level Review
                 </button>
               </td>
             </tr>
@@ -2535,27 +2375,25 @@ namespace DemoApp {
         if (!issue) return;
         state.selectedIssue = issue;
 
-        document.getElementById('modal-issue-title').textContent = issue.title;
-        document.getElementById('modal-filename').textContent = issue.file;
-        document.getElementById('modal-language').textContent = issue.language;
-        document.getElementById('modal-line').textContent = issue.line;
-        document.getElementById('modal-type').textContent = issue.type;
-        document.getElementById('modal-code-snippet').textContent = issue.code || '(empty code snippet)';
+        document.getElementById('modal-finding-title').textContent = issue.title;
+        document.getElementById('modal-meta-severity').textContent = issue.severity;
+        document.getElementById('modal-meta-location').textContent = issue.location;
+        document.getElementById('modal-meta-language').textContent = issue.language;
+        document.getElementById('modal-meta-dimension').textContent = issue.dimension;
 
-        // Severity badge
         const sevBadge = document.getElementById('modal-severity-badge');
         sevBadge.textContent = issue.severity;
-        sevBadge.className = `px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider ${issue.severity === 'High' ? 'badge-high' : (issue.severity === 'Medium' ? 'badge-medium' : 'badge-low')}`;
+        sevBadge.className = `px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider ${issue.severity === 'Critical' ? 'badge-critical' : (issue.severity === 'High' ? 'badge-high' : (issue.severity === 'Medium' ? 'badge-medium' : 'badge-low'))}`;
 
-        // AI fields
-        document.getElementById('modal-confidence-badge').textContent = `Confidence: ${issue.confidence || 'High'}`;
-        document.getElementById('modal-description').textContent = issue.description;
-        document.getElementById('modal-recommendation').textContent = issue.recommendation;
-        document.getElementById('modal-suggested-fix').textContent = issue.suggestedFix || '// No direct fix snippet available.';
+        document.getElementById('modal-code-snippet').textContent = issue.code || '(empty code snippet)';
+        document.getElementById('modal-beginner-exp').textContent = issue.beginner;
+        document.getElementById('modal-technical-exp').textContent = issue.technical;
+        document.getElementById('modal-advanced-exp').textContent = issue.advanced;
 
-        // Reset copy button
-        document.getElementById('copy-btn-text').textContent = 'Copy Fix';
+        document.getElementById('modal-suggested-fix').textContent = issue.suggestedFix || '// No code fix snippet available';
+        document.getElementById('modal-why-fix-works').textContent = issue.whyFixWorks;
 
+        document.getElementById('copy-btn-text').textContent = 'Copy Fix Snippet';
         document.getElementById('issue-modal').classList.remove('hidden');
       },
 
@@ -2568,7 +2406,6 @@ namespace DemoApp {
         if (!state.selectedIssue || !state.selectedIssue.suggestedFix) return;
         const text = state.selectedIssue.suggestedFix;
 
-        // Clipboard fallback using document.execCommand
         const textArea = document.createElement('textarea');
         textArea.value = text;
         textArea.style.position = 'fixed';
@@ -2586,189 +2423,183 @@ namespace DemoApp {
       }
     };
 
-    // 8.5 Reports View & Export Generator
+    // 8.4 Prioritized Action Plan UI
+    const actionPlanUI = {
+      render() {
+        const tier1 = state.currentIssues.filter(i => i.severity === 'Critical' || i.severity === 'High');
+        const tier2 = state.currentIssues.filter(i => i.severity === 'Medium');
+        const tier3 = state.currentIssues.filter(i => i.severity === 'Low' || i.severity === 'Informational');
+
+        this.renderTier('plan-tier-1', tier1, 'Critical security hazard or fatal bug');
+        this.renderTier('plan-tier-2', tier2, 'Correctness or performance warning');
+        this.renderTier('plan-tier-3', tier3, 'Maintainability item or technical debt marker');
+      },
+
+      renderTier(containerId, items, emptyText) {
+        const container = document.getElementById(containerId);
+        if (items.length === 0) {
+          container.innerHTML = `<p class="text-xs text-slate-500">No active ${emptyText} items flagged.</p>`;
+          return;
+        }
+
+        let html = '';
+        items.forEach((item, idx) => {
+          html += `
+            <div class="p-3 bg-slate-900/60 rounded-lg border border-slate-800 text-xs flex flex-col md:flex-row md:items-center justify-between gap-2">
+              <div>
+                <div class="flex items-center space-x-2">
+                  <span class="font-bold text-slate-200">${idx + 1}. ${ui.escapeHtml(item.title)}</span>
+                  <span class="text-[10px] font-mono text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded">${ui.escapeHtml(item.location)}</span>
+                </div>
+                <p class="text-slate-400 text-[11px] mt-1">${ui.escapeHtml(item.beginner)}</p>
+              </div>
+              <button onclick="issuesUI.inspectIssue('${item.id}')" class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded text-[11px] font-medium border border-slate-700 transition flex-shrink-0 self-start md:self-center">
+                Inspect Fix
+              </button>
+            </div>
+          `;
+        });
+        container.innerHTML = html;
+      }
+    };
+
+    // 8.5 Reports UI & Exporter
     const reportsUI = {
       render() {
         const timestamp = state.lastAnalysisTimestamp ? new Date(state.lastAnalysisTimestamp).toLocaleString() : 'Not evaluated yet';
         document.getElementById('report-timestamp').textContent = timestamp;
 
-        // Problem files
-        const fileMap = {};
+        // Group findings by target
+        const targetMap = {};
+        if (state.pastedCode.trim().length > 0) {
+          targetMap['Pasted Code Snippet'] = { name: 'Pasted Code Snippet (Primary)', language: state.pastedLang === 'auto' ? languageDetector.detect('pasted_code_snippet', state.pastedCode) : state.pastedLang, high: 0, med: 0, low: 0, total: 0 };
+        }
         state.stagedFiles.forEach(f => {
-          fileMap[f.name] = { name: f.name, language: f.language, high: 0, med: 0, low: 0, total: 0 };
+          targetMap[f.name] = { name: f.name, language: f.language, high: 0, med: 0, low: 0, total: 0 };
         });
 
         state.currentIssues.forEach(i => {
-          if (!fileMap[i.file]) {
-            fileMap[i.file] = { name: i.file, language: i.language, high: 0, med: 0, low: 0, total: 0 };
+          const key = i.location.includes('Pasted') ? 'Pasted Code Snippet' : (i.location.split(' ')[0] || 'Unknown');
+          if (!targetMap[key]) {
+            targetMap[key] = { name: key, language: i.language, high: 0, med: 0, low: 0, total: 0 };
           }
-          if (i.severity === 'High') fileMap[i.file].high++;
-          else if (i.severity === 'Medium') fileMap[i.file].med++;
-          else if (i.severity === 'Low') fileMap[i.file].low++;
-          fileMap[i.file].total++;
+          if (i.severity === 'Critical' || i.severity === 'High') targetMap[key].high++;
+          else if (i.severity === 'Medium') targetMap[key].med++;
+          else targetMap[key].low++;
+          targetMap[key].total++;
         });
 
-        const sortedFiles = Object.values(fileMap).sort((a, b) => b.total - a.total);
+        const sortedTargets = Object.values(targetMap).sort((a, b) => b.total - a.total);
         const topTable = document.getElementById('report-top-files');
 
-        if (sortedFiles.length === 0) {
-          topTable.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-500">Run an analysis to inspect file distribution.</td></tr>`;
+        if (sortedTargets.length === 0) {
+          topTable.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-500">Run an analysis to inspect target breakdown.</td></tr>`;
         } else {
           let html = '';
-          sortedFiles.forEach(f => {
+          sortedTargets.forEach(t => {
             html += `
               <tr class="hover:bg-slate-800/30">
-                <td class="p-3 font-mono font-medium text-slate-200">${ui.escapeHtml(f.name)}</td>
-                <td class="p-3 font-mono text-emerald-400">${ui.escapeHtml(f.language)}</td>
-                <td class="p-3 font-mono text-rose-400 font-semibold">${f.high}</td>
-                <td class="p-3 font-mono text-amber-400">${f.med}</td>
-                <td class="p-3 font-mono text-blue-400">${f.low}</td>
-                <td class="p-3 font-mono font-bold text-slate-100">${f.total}</td>
+                <td class="p-3 font-mono font-medium text-slate-200">${ui.escapeHtml(t.name)}</td>
+                <td class="p-3 font-mono text-emerald-400">${ui.escapeHtml(t.language)}</td>
+                <td class="p-3 font-mono text-rose-400 font-semibold">${t.high}</td>
+                <td class="p-3 font-mono text-amber-400">${t.med}</td>
+                <td class="p-3 font-mono text-blue-400">${t.low}</td>
+                <td class="p-3 font-mono font-bold text-slate-100">${t.total}</td>
               </tr>
             `;
           });
           topTable.innerHTML = html;
         }
 
-        // Category breakdown
-        const typeMap = {};
-        state.currentIssues.forEach(i => {
-          typeMap[i.type] = (typeMap[i.type] || 0) + 1;
-        });
-
-        const catContainer = document.getElementById('report-category-breakdown');
-        if (state.currentIssues.length === 0) {
-          catContainer.innerHTML = `<p class="text-xs text-slate-500 py-4 text-center">No findings available.</p>`;
-        } else {
-          let catHtml = '';
-          const maxVal = Math.max(1, ...Object.values(typeMap));
-          Object.entries(typeMap).forEach(([t, count]) => {
-            const pct = Math.round((count / maxVal) * 100);
-            catHtml += `
-              <div>
-                <div class="flex justify-between text-xs mb-1">
-                  <span class="text-slate-300 font-medium">${t}</span>
-                  <span class="text-slate-400 font-mono">${count} issues</span>
-                </div>
-                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                  <div class="bg-emerald-500 h-full rounded-full" style="width: ${pct}%"></div>
-                </div>
-              </div>
-            `;
-          });
-          catContainer.innerHTML = catHtml;
-        }
-
-        // Executive summary text
+        // Executive summary
         const execContainer = document.getElementById('report-executive-summary');
-        const score = analysisEngine.calculateHealthScore(state.stagedFiles.length, state.currentIssues);
-        const highCount = state.currentIssues.filter(i => i.severity === 'High').length;
+        const hasPasted = state.pastedCode.trim().length > 0;
+        const totalTargets = state.stagedFiles.length + (hasPasted ? 1 : 0);
+        const score = analysisEngine.calculateHealthScore(totalTargets, state.currentIssues);
+        const critHigh = state.currentIssues.filter(i => i.severity === 'Critical' || i.severity === 'High').length;
 
-        if (state.stagedFiles.length === 0) {
-          execContainer.innerHTML = '<p class="text-slate-500">Awaiting code inspection results.</p>';
+        if (totalTargets === 0) {
+          execContainer.innerHTML = '<p class="text-slate-500">Awaiting code review results.</p>';
         } else {
           execContainer.innerHTML = `
-            <p>CodeLens AI completed static evaluation over <strong class="text-white">${state.stagedFiles.length} file(s)</strong> across multi-language targets. A total of <strong class="text-amber-400">${state.currentIssues.length} issues</strong> were flagged.</p>
-            <p>Overall computed Code Health Score: <strong class="text-emerald-400">${score}/100</strong>.</p>
-            <p class="text-slate-400">${highCount > 0 ? `<span class="text-rose-400 font-semibold">Immediate attention advised:</span> ${highCount} high-severity findings were detected. Review proposed automated fixes before deployment.` : 'No critical high-severity vulnerabilities were detected in this pass.'}</p>
+            <p>CodeLens AI completed static review across <strong class="text-white">${totalTargets} target(s)</strong> (including ${hasPasted ? 'active primary pasted code snippet and ' : ''}${state.stagedFiles.length} project context file(s)).</p>
+            <p>Overall computed Code Health Score: <strong class="text-emerald-400">${score}/100</strong> with a total of <strong class="text-amber-400">${state.currentIssues.length} findings</strong> registered.</p>
+            <p class="text-slate-400">${critHigh > 0 ? `<span class="text-rose-400 font-semibold">Priority Action:</span> ${critHigh} critical/high security issues must be resolved prior to merging or deploying. Refer to the Prioritized Action Plan for remediation steps.` : 'No critical severity issues detected in this review pass.'}</p>
           `;
         }
       },
 
       downloadJSON() {
-        if (state.currentIssues.length === 0 && state.stagedFiles.length === 0) {
-          ui.showFlash('No analysis report available to download.', 'error');
+        if (state.currentIssues.length === 0 && state.stagedFiles.length === 0 && !state.pastedCode) {
+          ui.showFlash('No review report data to download.', 'error');
           return;
         }
 
         const reportData = {
-          application: 'CodeLens AI — Multi-Language Static Code Review Assistant',
-          version: '1.2.0',
+          application: 'CodeLens AI — Senior Multi-Language Code Review Assistant',
+          version: '2.0.0',
           timestamp: state.lastAnalysisTimestamp || new Date().toISOString(),
-          summary: {
+          overview: {
+            pastedSnippetPresent: !!state.pastedCode,
             filesAnalyzed: state.stagedFiles.length,
-            totalIssues: state.currentIssues.length,
-            codeHealthScore: analysisEngine.calculateHealthScore(state.stagedFiles.length, state.currentIssues),
-            severityCounts: {
-              high: state.currentIssues.filter(i => i.severity === 'High').length,
-              medium: state.currentIssues.filter(i => i.severity === 'Medium').length,
-              low: state.currentIssues.filter(i => i.severity === 'Low').length
-            }
+            totalFindings: state.currentIssues.length,
+            healthScore: analysisEngine.calculateHealthScore(state.stagedFiles.length + (state.pastedCode ? 1 : 0), state.currentIssues)
           },
-          files: state.stagedFiles.map(f => ({ name: f.name, language: f.language, size: f.size })),
-          issues: state.currentIssues
+          actionPlan: {
+            fixFirst: state.currentIssues.filter(i => i.severity === 'Critical' || i.severity === 'High'),
+            fixNext: state.currentIssues.filter(i => i.severity === 'Medium'),
+            improveLater: state.currentIssues.filter(i => i.severity === 'Low' || i.severity === 'Informational')
+          },
+          findings: state.currentIssues
         };
 
         const jsonString = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(reportData, null, 2));
         const downloadAnchor = document.createElement('a');
         downloadAnchor.setAttribute('href', jsonString);
-        downloadAnchor.setAttribute('download', `CodeLens_Report_${Date.now()}.json`);
+        downloadAnchor.setAttribute('download', `CodeLens_Review_Audit_${Date.now()}.json`);
         document.body.appendChild(downloadAnchor);
         downloadAnchor.click();
         downloadAnchor.remove();
-        ui.showFlash('Report JSON downloaded.', 'success');
+        ui.showFlash('Review JSON report downloaded.', 'success');
       },
 
       printHTMLReport() {
-        if (state.currentIssues.length === 0 && state.stagedFiles.length === 0) {
-          ui.showFlash('No analysis results available to print.', 'error');
+        if (state.currentIssues.length === 0 && state.stagedFiles.length === 0 && !state.pastedCode) {
+          ui.showFlash('No findings available to print.', 'error');
           return;
         }
 
         const printEl = document.getElementById('printable-report');
-        const score = analysisEngine.calculateHealthScore(state.stagedFiles.length, state.currentIssues);
+        const totalTargets = state.stagedFiles.length + (state.pastedCode ? 1 : 0);
+        const score = analysisEngine.calculateHealthScore(totalTargets, state.currentIssues);
 
-        let issuesRows = '';
+        let issuesHtml = '';
         state.currentIssues.forEach(i => {
-          issuesRows += `
-            <tr style="border-bottom: 1px solid #ddd; font-size: 11px;">
-              <td style="padding: 6px; font-weight: bold; color: ${i.severity === 'High' ? '#b91c1c' : (i.severity === 'Medium' ? '#b45309' : '#1d4ed8')};">${i.severity}</td>
-              <td style="padding: 6px;">${i.language}</td>
-              <td style="padding: 6px; font-family: monospace;">${i.file} : ${i.line}</td>
-              <td style="padding: 6px; font-weight: 500;">${i.title}</td>
-              <td style="padding: 6px; font-family: monospace; font-size: 10px;">${ui.escapeHtml(i.code)}</td>
-            </tr>
+          issuesHtml += `
+            <div style="border-bottom: 1px solid #e2e8f0; padding: 12px 0;">
+              <div style="display: flex; justify-content: space-between;">
+                <strong style="color: ${i.severity === 'Critical' ? '#be123c' : (i.severity === 'High' ? '#b91c1c' : '#b45309')}; font-size: 13px;">[${i.severity}] ${i.title}</strong>
+                <span style="font-family: monospace; font-size: 11px;">${i.location}</span>
+              </div>
+              <p style="margin: 4px 0; font-size: 11px; color: #334155;"><strong>Beginner:</strong> ${i.beginner}</p>
+              <p style="margin: 4px 0; font-size: 11px; color: #1e293b;"><strong>Technical:</strong> ${i.technical}</p>
+              <p style="margin: 4px 0; font-size: 11px; color: #475569;"><strong>Advanced:</strong> ${i.advanced}</p>
+              <pre style="background: #f1f5f9; padding: 6px; font-family: monospace; font-size: 10px; margin-top: 4px;">${ui.escapeHtml(i.suggestedFix)}</pre>
+            </div>
           `;
         });
 
         printEl.innerHTML = `
-          <div style="font-family: sans-serif; color: #111; line-height: 1.4;">
-            <div style="border-bottom: 2px solid #059669; padding-bottom: 12px; margin-bottom: 16px;">
-              <h1 style="margin: 0; font-size: 22px; color: #047857;">CodeLens AI — Static Code Review Audit</h1>
-              <p style="margin: 4px 0 0 0; font-size: 12px; color: #555;">Generated: ${new Date().toLocaleString()} | Health Score: ${score}/100</p>
+          <div style="font-family: sans-serif; color: #0f172a; line-height: 1.4;">
+            <div style="border-bottom: 2px solid #059669; padding-bottom: 10px; margin-bottom: 16px;">
+              <h1 style="margin: 0; font-size: 20px; color: #047857;">CodeLens AI — Senior Code Review Audit</h1>
+              <p style="margin: 4px 0 0 0; font-size: 12px; color: #64748b;">Generated: ${new Date().toLocaleString()} | Code Health Score: ${score}/100</p>
             </div>
-
-            <div style="display: flex; gap: 20px; margin-bottom: 20px; font-size: 12px;">
-              <div style="border: 1px solid #ccc; padding: 10px; border-radius: 6px; flex: 1;">
-                <strong>Files Evaluated:</strong> ${state.stagedFiles.length}
-              </div>
-              <div style="border: 1px solid #ccc; padding: 10px; border-radius: 6px; flex: 1;">
-                <strong>Total Issues:</strong> ${state.currentIssues.length}
-              </div>
-              <div style="border: 1px solid #ccc; padding: 10px; border-radius: 6px; flex: 1;">
-                <strong>Code Health Score:</strong> ${score} / 100
-              </div>
+            <div style="margin-bottom: 16px; font-size: 12px;">
+              <strong>Targets Evaluated:</strong> ${totalTargets} | <strong>Total Findings:</strong> ${state.currentIssues.length}
             </div>
-
             <h3 style="font-size: 14px; margin-bottom: 8px;">Detailed Findings Registry</h3>
-            <table style="width: 100%; border-collapse: collapse; text-align: left; margin-bottom: 24px;">
-              <thead>
-                <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1; font-size: 11px; text-transform: uppercase;">
-                  <th style="padding: 6px;">Severity</th>
-                  <th style="padding: 6px;">Language</th>
-                  <th style="padding: 6px;">File / Line</th>
-                  <th style="padding: 6px;">Finding Title</th>
-                  <th style="padding: 6px;">Code Snippet</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${issuesRows || '<tr><td colspan="5" style="padding: 10px; text-align: center;">No issues flagged.</td></tr>'}
-              </tbody>
-            </table>
-
-            <div style="font-size: 10px; color: #666; border-top: 1px solid #ddd; padding-top: 8px;">
-              Generated via CodeLens AI Multi-Language Code Review Assistant. Static analysis report for academic evaluation.
-            </div>
+            ${issuesHtml}
           </div>
         `;
 
@@ -2776,40 +2607,92 @@ namespace DemoApp {
       }
     };
 
-    // --- 9. APP ORCHESTRATOR & EVENT BINDINGS ---
+    // --- 9. APP ORCHESTRATOR & ROUTER ---
+    const router = {
+      views: ['dashboard', 'workspace', 'issues', 'actionplan', 'reports', 'languages', 'settings', 'about'],
+
+      navigate(viewId) {
+        if (!this.views.includes(viewId)) viewId = 'dashboard';
+        state.currentView = viewId;
+
+        this.views.forEach(v => {
+          const el = document.getElementById(`view-${v}`);
+          if (el) el.classList.add('hidden');
+        });
+
+        const target = document.getElementById(`view-${viewId}`);
+        if (target) target.classList.remove('hidden');
+
+        document.querySelectorAll('.nav-item').forEach(btn => {
+          const navTarget = btn.getAttribute('data-nav');
+          if (navTarget === viewId) {
+            btn.className = 'nav-item w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition text-emerald-400 bg-emerald-950/40 border border-emerald-800/40';
+          } else {
+            btn.className = 'nav-item w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition text-slate-400 hover:text-slate-100 hover:bg-slate-800/60';
+          }
+        });
+
+        const titles = {
+          dashboard: ['Dashboard', 'Code Health & High-Level Metrics'],
+          workspace: ['Code Workspace', 'Dual Ingestion: Pasted Snippet & Project Files'],
+          issues: ['Review Findings', '3-Level Technical Inspection & Remediation'],
+          actionplan: ['Prioritized Action Plan', 'Engineered 3-Tier Remediation Roadmap'],
+          reports: ['Audit Reports', 'Comprehensive Code Summary & Export'],
+          languages: ['Supported Languages', 'Architecture & Analyzer Matrix'],
+          settings: ['Configuration', 'Analysis Rules & Local Storage Settings'],
+          about: ['Project Overview', 'Academic Architecture & Demonstration']
+        };
+
+        if (titles[viewId]) {
+          document.getElementById('page-title').textContent = titles[viewId][0];
+          document.getElementById('page-subtitle').textContent = titles[viewId][1];
+        }
+
+        if (viewId === 'dashboard') dashboardUI.update();
+        if (viewId === 'issues') issuesUI.render();
+        if (viewId === 'actionplan') actionPlanUI.render();
+        if (viewId === 'reports') reportsUI.render();
+      }
+    };
+
     const app = {
       init() {
         storage.init();
-        uploadUI.init();
+        workspaceUI.init();
         router.navigate('dashboard');
       },
 
       removeStagedFile(index) {
         state.stagedFiles.splice(index, 1);
-        uploadUI.renderStagedFiles();
+        workspaceUI.renderStagedFiles();
         ui.showFlash('File removed from workspace.', 'info');
       },
 
       clearStagedFiles() {
         state.stagedFiles = [];
-        uploadUI.renderStagedFiles();
-        ui.showFlash('Workspace cleared.', 'info');
+        workspaceUI.renderStagedFiles();
+        ui.showFlash('Staged files cleared.', 'info');
       },
 
       clearAnalysis() {
+        state.pastedCode = '';
         state.stagedFiles = [];
         state.currentIssues = [];
         state.lastAnalysisTimestamp = null;
-        uploadUI.renderStagedFiles();
+        document.getElementById('pasted-code-input').value = '';
+        workspaceUI.updatePastedStats();
+        workspaceUI.renderStagedFiles();
         dashboardUI.update();
         issuesUI.render();
+        actionPlanUI.render();
         reportsUI.render();
-        ui.showFlash('Current analysis session cleared.', 'info');
+        ui.showFlash('Workspace and active analysis cleared.', 'info');
       },
 
       async runAnalysis() {
-        if (state.stagedFiles.length === 0) {
-          ui.showFlash('No files staged for analysis. Drag in files or click "Load Sample Project".', 'error');
+        const hasPasted = state.pastedCode && state.pastedCode.trim().length > 0;
+        if (state.stagedFiles.length === 0 && !hasPasted) {
+          ui.showFlash('No code available to review. Paste code in the editor or load demo files.', 'error');
           return;
         }
 
@@ -2822,54 +2705,44 @@ namespace DemoApp {
 
         runBtn.disabled = true;
         progressCont.classList.remove('hidden');
-        statusDot.className = 'w-2 h-2 rounded-full bg-amber-400 animate-pulse';
-        statusText.textContent = 'Running static analyzers...';
+        statusDot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse';
+        statusText.textContent = 'Running dual-context static evaluation...';
 
-        state.currentIssues = [];
-        const total = state.stagedFiles.length;
+        progressBar.style.width = '35%';
+        progressLabel.textContent = 'Evaluating syntax and security vectors...';
+        await new Promise(r => setTimeout(r, 120));
 
-        for (let i = 0; i < total; i++) {
-          const fileObj = state.stagedFiles[i];
-          const pct = Math.round(((i + 1) / total) * 100);
-          progressBar.style.width = `${pct}%`;
-          progressLabel.textContent = `Analyzing ${fileObj.name} (${pct}%)`;
+        progressBar.style.width = '75%';
+        progressLabel.textContent = 'Generating 3-level explanations and action plan...';
+        await new Promise(r => setTimeout(r, 120));
 
-          // Brief delay to allow UI refresh and smooth progress demo
-          await new Promise(r => setTimeout(r, 60));
-
-          const findings = analysisEngine.runOnFile(fileObj);
-          state.currentIssues.push(...findings);
-        }
-
+        state.currentIssues = analysisEngine.runDualAnalysis();
         state.lastAnalysisTimestamp = new Date().toISOString();
 
-        // Calculate and save to local history
-        const score = analysisEngine.calculateHealthScore(state.stagedFiles.length, state.currentIssues);
-        const highCount = state.currentIssues.filter(i => i.severity === 'High').length;
+        const totalTargets = state.stagedFiles.length + (hasPasted ? 1 : 0);
+        const score = analysisEngine.calculateHealthScore(totalTargets, state.currentIssues);
+        const highCount = state.currentIssues.filter(i => i.severity === 'Critical' || i.severity === 'High').length;
+
         storage.recordAnalysis({
-          filesCount: state.stagedFiles.length,
+          targetsCount: totalTargets,
           issuesCount: state.currentIssues.length,
           healthScore: score,
           highCount: highCount
         });
 
-        // Reset indicators
         progressBar.style.width = '100%';
-        statusDot.className = 'w-2 h-2 rounded-full bg-emerald-400';
-        statusText.textContent = `Analysis complete: ${state.currentIssues.length} finding(s) detected.`;
+        statusDot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400';
+        statusText.textContent = `Review complete: ${state.currentIssues.length} finding(s) detected.`;
         runBtn.disabled = false;
 
-        setTimeout(() => {
-          progressCont.classList.add('hidden');
-        }, 1500);
+        setTimeout(() => progressCont.classList.add('hidden'), 1200);
 
         dashboardUI.update();
-        ui.showFlash(`Analysis finished: ${state.currentIssues.length} issues identified across ${state.stagedFiles.length} file(s).`, 'success');
+        ui.showFlash(`Analysis complete: ${state.currentIssues.length} findings across ${totalTargets} target(s).`, 'success');
         router.navigate('issues');
       }
     };
 
-    // Initialize application when DOM is ready
     window.addEventListener('DOMContentLoaded', () => {
       app.init();
     });
